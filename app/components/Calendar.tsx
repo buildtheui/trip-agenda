@@ -60,7 +60,9 @@ const Calendar: React.FC<CalendarProps> = ({
               <div
                 className={`text-xs font-medium ${selectedDay === day.day ? "text-white/90" : "text-gray-600"}`}
               >
-                {format(new Date(day.date), "EEEE, d MMM", { locale: es })}
+                {format(new Date(day.date + "T12:00:00"), "EEEE, d MMM", {
+                  locale: es,
+                })}
               </div>
               <div className="text-base">{getCountryFlag(day.country)}</div>
             </div>
