@@ -379,51 +379,61 @@ export const itinerary: ItineraryDay[] = [
     day: 6,
     city: "París",
     country: "Francia",
-    title: "Viaje a París",
-    description: "Vuelo matutino Barcelona a París Orly",
+    title: "Llegada a París y Lugares Destacados",
+    description:
+      "Vuelo matutino y visita a Torre Eiffel, Arco del Triunfo y Louvre",
     activities: [
       {
-        time: "07:00",
-        activity: "Vuelo Barcelona a París Orly",
+        time: "04:30",
+        activity: "Traslado al aeropuerto de Barcelona",
         type: "transport",
-        notes: "Vueling/EasyJet ~€50-80. Vuelo de 1h 25min.",
+        notes: "Salida temprana. Metro o taxi al aeropuerto El Prat.",
       },
       {
-        time: "10:00",
-        activity: "Llegada a París Orly y viaje a la ciudad",
+        time: "06:10",
+        activity: "Vuelo Barcelona a París (Transavia)",
         type: "transport",
-        notes: "Orlybus hasta Denfert-Rochereau (€9.50), luego Metro al hotel.",
+        notes: "Transavia 6:10-8:10. Vuelo de 2 horas.",
       },
       {
-        time: "12:00",
-        activity: "Check-in y almuerzo",
+        time: "08:10",
+        activity: "Llegada a París y viaje a la ciudad",
+        type: "transport",
+        notes:
+          "Desde aeropuerto Charles de Gaulle. RER B hasta centro + Metro al hotel.",
+      },
+      {
+        time: "10:30",
+        activity: "Check-in y desayuno tardío",
         type: "accommodation",
-        notes: "Almuerzo ligero cerca del hotel en el Barrio Latino.",
+        notes: "Desayuno/brunch en café parisino cerca del hotel.",
       },
       {
         time: "14:00",
-        activity: "Exploración del área de Notre-Dame",
+        activity: "Torre Eiffel",
         type: "sightseeing",
-        notes: "Gratis. Ver exterior (en restauración). Sainte-Chapelle cerca.",
-      },
-      {
-        time: "15:30",
-        activity: "Sainte-Chapelle",
-        type: "culture",
-        notes: "€11.50 entrada. Deslumbrantes vidrieras. ¡Imperdible!",
-      },
-      {
-        time: "17:00",
-        activity: "Paseo por el río Sena",
-        type: "sightseeing",
-        notes: "Gratis. Hermoso paseo ribereño. Excelente para fotos.",
-      },
-      {
-        time: "18:30",
-        activity: "Cena en el Barrio Latino",
-        type: "food",
         notes:
-          "Bistró francés tradicional. Probar coq au vin o boeuf bourguignon.",
+          "€29 hasta la cima en ascensor. ¡Reservar online! Empezar temprano para evitar multitudes.",
+      },
+      {
+        time: "16:00",
+        activity: "Arco del Triunfo y Campos Elíseos",
+        type: "sightseeing",
+        notes:
+          "€13 para subir al Arco del Triunfo. Famosa avenida para compras y pasear.",
+      },
+      {
+        time: "17:30",
+        activity: "Museo del Louvre",
+        type: "culture",
+        notes:
+          "€17 entrada. Reservar online previamente. Enfocarse en lo destacado: Mona Lisa, Venus de Milo. Cierra a las 21:00.",
+      },
+      {
+        time: "20:30",
+        activity: "Cena cerca del Louvre",
+        type: "food",
+        notes: "Cena tardía en bistró francés tradicional.",
       },
     ],
     accommodation: {
@@ -434,91 +444,20 @@ export const itinerary: ItineraryDay[] = [
         "Ubicación central, cerca del Metro, a distancia caminable de atracciones",
     },
     transportation: {
-      flight: "Barcelona-París Orly (€50-80)",
-      airport: "Orlybus + Metro (€12)",
+      flight: "Barcelona-París CDG Transavia 6:10-8:10 (€50-80)",
+      airport: "RER B desde CDG + Metro (€11.45)",
       local: "Pase semanal Navigo (€30)",
     },
-    baseBudget: 130,
-    tips: "Verificar restricciones de vuelo. Obtener pase Navigo en estación de Metro. Reservar Sainte-Chapelle online.",
+    baseBudget: 140,
+    tips: "Salida muy temprana - preparar equipaje la noche anterior. Verificar restricciones de equipaje Transavia. Obtener pase Navigo en CDG. Reservar Torre Eiffel y Louvre online.",
   },
   {
     date: "2025-09-20",
     day: 7,
     city: "París",
     country: "Francia",
-    title: "Lugares Destacados Clásicos de París",
-    description: "Torre Eiffel, Louvre y Montmartre",
-    activities: [
-      {
-        time: "09:00",
-        activity: "Torre Eiffel",
-        type: "sightseeing",
-        notes:
-          "€29 hasta la cima en ascensor. ¡Reservar online! Empezar temprano para evitar multitudes.",
-      },
-      {
-        time: "11:00",
-        activity: "Jardines del Trocadéro",
-        type: "sightseeing",
-        notes: "Gratis. Mejores fotos de la Torre Eiffel desde aquí.",
-      },
-      {
-        time: "12:00",
-        activity: "Crucero por el río Sena",
-        type: "sightseeing",
-        notes: "€15-17. Crucero de 1 hora. Forma relajante de ver París.",
-      },
-      {
-        time: "13:30",
-        activity: "Descanso para almorzar",
-        type: "food",
-        notes: "Almuerzo ligero cerca del área del Louvre.",
-      },
-      {
-        time: "14:30",
-        activity: "Museo del Louvre",
-        type: "culture",
-        notes:
-          "€17 entrada. Reservar online previamente. Enfocarse en lo destacado: Mona Lisa, Venus de Milo. Máximo 3 horas.",
-      },
-      {
-        time: "17:30",
-        activity: "Descanso en el hotel",
-        type: "rest",
-        notes: "Pausa antes de las actividades nocturnas.",
-      },
-      {
-        time: "19:00",
-        activity: "Montmartre y Sacré-Cœur",
-        type: "sightseeing",
-        notes:
-          "Gratis. Tomar funicular (€1.90). Hermosas vistas y ambiente bohemio.",
-      },
-      {
-        time: "20:30",
-        activity: "Cena en Montmartre",
-        type: "food",
-        notes: "Cocina francesa tradicional con vistas.",
-      },
-    ],
-    accommodation: {
-      name: "Hotel des Grands Boulevards",
-      area: "Barrio Latino",
-      price: "€85/noche",
-    },
-    transportation: {
-      local: "Metro con pase Navigo",
-    },
-    baseBudget: 95,
-    tips: "Reservar Torre Eiffel y Louvre online con anticipación. Zapatos cómodos esenciales. Mantenerse hidratado.",
-  },
-  {
-    date: "2025-09-21",
-    day: 8,
-    city: "París",
-    country: "Francia",
-    title: "Versalles y Campos Elíseos",
-    description: "Excursión al Palacio de Versalles y noche en París central",
+    title: "Versalles y París Nocturno",
+    description: "Excursión a Versalles y visita nocturna de París",
     activities: [
       {
         time: "08:30",
@@ -555,16 +494,29 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "17:30",
-        activity: "Campos Elíseos y Arco del Triunfo",
+        activity: "Área de Notre-Dame",
         type: "sightseeing",
         notes:
-          "€13 para subir al Arco del Triunfo. Famosa avenida para compras y pasear.",
+          "Gratis. Ver exterior (en restauración). Paseo por la Île de la Cité.",
       },
       {
-        time: "19:30",
-        activity: "Cena de despedida en París",
+        time: "18:30",
+        activity: "Crucero por el río Sena",
+        type: "sightseeing",
+        notes: "€15-17. Crucero de 1 hora. Forma relajante de ver París.",
+      },
+      {
+        time: "19:45",
+        activity: "Cena con vistas al Sena",
         type: "food",
-        notes: "Cena especial. Probar platos franceses clásicos y vino.",
+        notes: "Cena francesa tradicional cerca del río.",
+      },
+      {
+        time: "21:30",
+        activity: "Torre Eiffel iluminada",
+        type: "sightseeing",
+        notes:
+          "Gratis. Torre Eiffel con luces nocturnas. Espectáculo cada hora.",
       },
     ],
     accommodation: {
@@ -576,36 +528,43 @@ export const itinerary: ItineraryDay[] = [
       versailles: "Tren RER C (€7.30 ida y vuelta)",
       local: "Metro con pase Navigo",
     },
-    baseBudget: 85,
-    tips: "Reservar tickets de Versalles online. Usar zapatos muy cómodos. Llevar snacks y agua.",
+    baseBudget: 90,
+    tips: "Reservar tickets de Versalles online. Usar zapatos muy cómodos. Torre Eiffel se ilumina cada hora al anochecer.",
   },
+
   {
-    date: "2025-09-22",
-    day: 9,
+    date: "2025-09-21",
+    day: 8,
     city: "Roma",
     country: "Italia",
     title: "Viaje a Roma",
     description: "Tren de alta velocidad París a Roma",
     activities: [
       {
-        time: "07:15",
-        activity: "Tren nocturno Thello París-Roma",
+        time: "06:30",
+        activity: "Traslado al aeropuerto Charles de Gaulle",
         type: "transport",
         notes:
-          "Sale de Gare de Lyon. €35-150 según clase. Viaje de 14 horas con opciones de cama.",
+          "RER B desde centro de París. Salida temprana para vuelo matutino.",
       },
       {
-        time: "14:30",
-        activity: "Llegada a Roma Termini",
+        time: "09:05",
+        activity: "Vuelo París a Roma (Wizz Air)",
+        type: "transport",
+        notes: "Wizz Air 9:05-11:10. Vuelo de 2h 5min.",
+      },
+      {
+        time: "11:10",
+        activity: "Llegada a Roma Fiumicino",
         type: "arrival",
-        notes:
-          "Alternativa: Volar París-Roma (€60-120, 2.5h) si prefieren no tomar tren nocturno.",
+        notes: "Hora local italiana (1 hora de diferencia con París).",
       },
       {
-        time: "15:30",
-        activity: "Check-in hotel y descanso",
+        time: "12:30",
+        activity: "Viaje a Roma centro y check-in hotel",
         type: "accommodation",
-        notes: "Metro Línea A desde Termini hasta estación Spagna.",
+        notes:
+          "Leonardo Express hasta Termini (€14), luego Metro Línea A hasta Spagna.",
       },
       {
         time: "17:00",
@@ -636,15 +595,16 @@ export const itinerary: ItineraryDay[] = [
         "Ubicación central, cerca del Metro, a distancia caminable de atracciones",
     },
     transportation: {
-      paris_rome: "Tren nocturno Thello (€35-150) o vuelo (€60-120)",
+      paris_rome: "Vuelo Wizz Air 9:05-11:10 (€60-120)",
+      airport: "Leonardo Express CDG-Termini (€14)",
       local: "Roma Pass 3 días (€38.50 - incluye transporte + atracciones)",
     },
     baseBudget: 120,
-    tips: "Considerar vuelo vs tren nocturno según preferencia de comodidad. Obtener Roma Pass en aeropuerto/estación.",
+    tips: "Verificar restricciones de equipaje de Wizz Air. Obtener Roma Pass en aeropuerto Fiumicino o estación Termini.",
   },
   {
-    date: "2025-09-23",
-    day: 10,
+    date: "2025-09-22",
+    day: 9,
     city: "Roma",
     country: "Italia",
     title: "Roma Antigua",
@@ -715,8 +675,8 @@ export const itinerary: ItineraryDay[] = [
     tips: "Reservar Coliseo online con anticipación. Empezar temprano para evitar multitudes. Usar zapatos cómodos.",
   },
   {
-    date: "2025-09-24",
-    day: 11,
+    date: "2025-09-23",
+    day: 10,
     city: "Roma",
     country: "Italia",
     title: "Ciudad del Vaticano",
@@ -781,6 +741,87 @@ export const itinerary: ItineraryDay[] = [
     },
     baseBudget: 70,
     tips: "¡Reservar Vaticano online con anticipación! Vestirse modestamente (no shorts/camisetas sin mangas). Llevar agua.",
+  },
+  {
+    date: "2025-09-24",
+    day: 11,
+    city: "Roma",
+    country: "Italia",
+    title: "Roma Monumental y Barrios Históricos",
+    description: "Exploración de Trastevere, Aventino y Villa Borghese",
+    activities: [
+      {
+        time: "09:00",
+        activity: "Villa Borghese y Galería Borghese",
+        type: "culture",
+        notes:
+          "€13 entrada. ¡Reservar online es esencial! Obras de Bernini, Caravaggio. 2 horas máximo.",
+      },
+      {
+        time: "11:30",
+        activity: "Parque Villa Borghese",
+        type: "sightseeing",
+        notes:
+          "Gratis. Hermoso parque con jardines y vistas panorámicas de Roma.",
+      },
+      {
+        time: "13:00",
+        activity: "Almuerzo en Trastevere",
+        type: "food",
+        notes: "Almuerzo en osteria tradicional. Probar carciofi alla romana.",
+      },
+      {
+        time: "14:30",
+        activity: "Basílica de Santa María en Trastevere",
+        type: "culture",
+        notes:
+          "Gratis. Una de las iglesias más antiguas de Roma con hermosos mosaicos.",
+      },
+      {
+        time: "15:30",
+        activity: "Exploración del barrio de Trastevere",
+        type: "sightseeing",
+        notes: "Gratis. Calles empedradas, arte callejero y ambiente bohemio.",
+      },
+      {
+        time: "17:00",
+        activity: "Colina del Aventino - Ojo de cerradura",
+        type: "sightseeing",
+        notes:
+          "Gratis. Vista única de la Basílica de San Pedro a través del ojo de la cerradura.",
+      },
+      {
+        time: "18:00",
+        activity: "Jardín de Naranjos (Parco Savello)",
+        type: "sightseeing",
+        notes:
+          "Gratis. Vista panorámica de Roma al atardecer. Perfecto para fotos.",
+      },
+      {
+        time: "19:30",
+        activity: "Aperitivo en Testaccio",
+        type: "food",
+        notes:
+          "Zona gastronómica local. Probar aperitivo con cicchetti romanos.",
+      },
+      {
+        time: "21:00",
+        activity: "Cena en Testaccio",
+        type: "food",
+        notes:
+          "Cena en barrio auténtico romano. Probar quinto quarto y vino local.",
+      },
+    ],
+    accommodation: {
+      name: "Hotel Artemide",
+      area: "Cerca de Termini/Escalinata de España",
+      price: "€95/noche",
+    },
+    transportation: {
+      local: "Metro y caminando. Usar Roma Pass.",
+    },
+    baseBudget: 85,
+    tips: "Reservar Galería Borghese online con anticipación. Usar zapatos cómodos para caminar por adoquines. Llevar agua.",
   },
   {
     date: "2025-09-25",
@@ -973,23 +1014,23 @@ export const itinerary: ItineraryDay[] = [
         notes: "Souvenirs de cristal de Murano, últimas fotos.",
       },
       {
-        time: "16:30",
+        time: "16:00",
         activity: "Viaje al Aeropuerto de Venecia",
         type: "transport",
         notes: "Autobús ATVO o taxi acuático al Aeropuerto Marco Polo. 1 hora.",
       },
       {
-        time: "19:00",
-        activity: "Vuelo Venecia a Madrid",
+        time: "18:50",
+        activity: "Vuelo Venecia a Madrid (Ryan Air)",
         type: "transport",
-        notes: "Vuelo directo. 2.5 horas. €80-150.",
+        notes: "Ryan Air 18:50-21:30. Vuelo directo de 2h 40min.",
       },
       {
-        time: "22:00",
-        activity: "Llegada a Madrid y hotel",
+        time: "21:30",
+        activity: "Llegada a Madrid Barajas y hotel",
         type: "accommodation",
         notes:
-          "Metro al centro de la ciudad. Descansar antes del vuelo de salida.",
+          "Metro Línea 8 al centro o taxi al hotel del aeropuerto. Descansar antes del vuelo de salida.",
       },
     ],
     accommodation: {
@@ -1000,11 +1041,11 @@ export const itinerary: ItineraryDay[] = [
     },
     transportation: {
       venice_airport: "Autobús ATVO (€8) o taxi acuático (€25-35)",
-      flight: "Venecia-Madrid (€80-150)",
-      madrid_airport: "Metro o taxi al hotel del aeropuerto",
+      flight: "Ryan Air Venecia-Madrid 18:50-21:30 (€80-150)",
+      madrid_airport: "Metro Línea 8 o taxi al hotel del aeropuerto",
     },
     baseBudget: 180,
-    tips: "Reservar Palacio Ducal online. Permitir tiempo extra para transporte al aeropuerto de Venecia. Empacar souvenirs con cuidado.",
+    tips: "Reservar Palacio Ducal online. Verificar restricciones de equipaje Ryan Air. Permitir tiempo extra para transporte al aeropuerto de Venecia. Empacar souvenirs con cuidado.",
   },
   {
     date: "2025-09-28",
@@ -1051,17 +1092,17 @@ export const tripSummary: TripSummary = {
   baseTotalBudget: 1485,
   timeDistribution: {
     spain: { days: 4, percentage: "27%" },
-    france: { days: 3, percentage: "20%" },
-    italy: { days: 7, percentage: "47%" },
-    travel: { days: 1, percentage: "6%" },
+    france: { days: 2, percentage: "13%" },
+    italy: { days: 8, percentage: "53%" },
+    travel: { days: 1, percentage: "7%" },
   },
   keyTransportation: [
     "Madrid-Barcelona: Tren AVE de alta velocidad",
-    "Barcelona-París: Vuelo a Orly",
-    "París-Roma: Tren nocturno o vuelo",
+    "Barcelona-París: Vuelo Transavia 6:10-8:10",
+    "París-Roma: Vuelo Wizz Air 9:05-11:10",
     "Roma-Florencia: Tren de alta velocidad",
     "Florencia-Venecia: Tren regional",
-    "Venecia-Madrid: Vuelo directo",
+    "Venecia-Madrid: Vuelo Ryan Air 18:50-21:30",
   ],
   budgetBreakdown: {
     accommodation: 1220,
