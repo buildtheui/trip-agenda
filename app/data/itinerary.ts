@@ -85,23 +85,23 @@ export const itinerary: ItineraryDay[] = [
         activity: "Llegada del vuelo desde BOG",
         type: "transport",
         notes:
-          "Tomar Metro Línea 8 hasta Nuevos Ministerios, luego Línea 10 hasta Tribunal (cerca del hotel)",
+          "Tomar Metro Línea 8 hasta Nuevos Ministerios, luego Línea 10 hasta Gran Vía (cerca del hotel)",
       },
     ],
     accommodation: {
-      name: "Hotel Petit Palace Tribunal",
-      area: "Malasaña",
-      price: "€65/noche",
+      name: "Airbnb con Ahmed",
+      area: "Centro",
+      price: "€61/noche",
       notes:
-        "Cerca del Metro, a distancia caminable de las principales atracciones",
-      address: "Cerca de la Estación de Metro Tribunal",
+        "Cerca del Metro y Gran Vía, a distancia caminable de las principales atracciones",
+      address: "C. de la Ballesta, 18, Centro, 28004 Madrid, Spain",
     },
     transportation: {
-      airport: "Metro Línea 8 + Línea 10 (€4.50-5.00)",
+      airport: "Metro Línea 8 + Línea 10 hasta Gran Vía (€4.50-5.00)",
       local: "Tarjeta Metro 10 viajes (€12.20)",
     },
     baseBudget: 80,
-    tips: "Descansar bien esta noche. Comprar tarjeta Metro en el aeropuerto.",
+    tips: "Descansar bien esta noche. Comprar tarjeta Metro en el aeropuerto. El apartamento está cerca de Gran Vía.",
   },
   {
     date: "2025-09-15",
@@ -119,49 +119,78 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "10:00",
+        activity: "La Rosaleda - Parque del Retiro",
+        type: "sightseeing",
+        notes:
+          "Gratis. Hermoso jardín de rosas. Perfecto para fotos y paseo matutino.",
+      },
+      {
+        time: "10:30",
+        activity: "Palacio de Cristal - Parque del Retiro",
+        type: "sightseeing",
+        notes:
+          "Gratis. Estructura de cristal icónica. Imperdible para fotos y exposiciones de arte.",
+      },
+      {
+        time: "11:30",
+        activity: "Puerta de Alcalá",
+        type: "sightseeing",
+        notes:
+          "Gratis. Monumento emblemático de Madrid. Perfecta para fotos icónicas.",
+      },
+      {
+        time: "12:00",
+        activity: "Banco de España",
+        type: "sightseeing",
+        notes: "Gratis. Edificio histórico imponente. Vista exterior y fotos.",
+      },
+      {
+        time: "12:30",
+        activity: "Caminar por Gran Vía",
+        type: "sightseeing",
+        notes:
+          "Gratis. La Broadway madrileña. Arquitectura, tiendas y ambiente urbano.",
+      },
+      {
+        time: "13:30",
+        activity: "Almuerzo en el Museo del Jamón",
+        type: "food",
+        notes:
+          "Tapas tradicionales en el famoso Museo del Jamón. Presupuesto: €25-30 por ambos",
+      },
+      {
+        time: "15:00",
+        activity: "Terraza Corte Inglés",
+        type: "sightseeing",
+        notes:
+          "Gratis subir. Vista panorámica de Madrid desde la terraza. Excelente para fotos.",
+      },
+      {
+        time: "16:00",
+        activity: "Plaza Mayor",
+        type: "sightseeing",
+        notes:
+          "Gratis. Plaza histórica principal de Madrid. Excelente para fotos.",
+      },
+      {
+        time: "17:00",
         activity: "Palacio Real",
         type: "sightseeing",
         notes:
           "€13 entrada. Reservar tickets sin cola online. Visita de 2-3 horas.",
       },
-      {
-        time: "13:00",
-        activity: "Almuerzo en Plaza Mayor",
-        type: "food",
-        notes: "Tapas tradicionales. Presupuesto: €25-30 por ambos",
-      },
-      {
-        time: "15:00",
-        activity: "Parque del Retiro y Palacio de Cristal",
-        type: "sightseeing",
-        notes:
-          "Gratis. Perfecto para fotos y descanso. Alquilar barca si se desea.",
-      },
-      {
-        time: "17:30",
-        activity: "Museo del Prado",
-        type: "culture",
-        notes:
-          "€15 entrada. Gratis 18:00-20:00 Lu-Sa. Enfocarse en Velázquez, Goya.",
-      },
-      {
-        time: "19:30",
-        activity: "Templo de Debod (atardecer)",
-        type: "sightseeing",
-        notes:
-          "Gratis. Mejores vistas del atardecer en Madrid. Viaje corto en Metro.",
-      },
     ],
     accommodation: {
-      name: "Hotel Petit Palace Tribunal",
-      area: "Malasaña",
-      price: "€65/noche",
+      name: "Airbnb con Ahmed",
+      area: "Centro",
+      price: "€61/noche",
+      address: "C. de la Ballesta, 18, Centro, 28004 Madrid, Spain",
     },
     transportation: {
       local: "Metro/Caminando. Todas las atracciones bien conectadas.",
     },
-    baseBudget: 70,
-    tips: "Usar zapatos cómodos. Reservar tickets del Palacio online. Siesta 14:00-16:00.",
+    baseBudget: 55,
+    tips: "Usar zapatos cómodos para caminar mucho. Reservar tickets del Palacio Real online. Ruta optimizada siguiendo el mapa.",
   },
   {
     date: "2025-09-16",
@@ -217,9 +246,10 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Petit Palace Tribunal",
-      area: "Malasaña",
-      price: "€65/noche",
+      name: "Airbnb con Ahmed",
+      area: "Centro",
+      price: "€61/noche",
+      address: "C. de la Ballesta, 18, Centro, 28004 Madrid, Spain",
     },
     transportation: {
       primary: "Tren RENFE Madrid-Toledo (€13.90 ida y vuelta)",
