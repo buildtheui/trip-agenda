@@ -3,9 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
+    "build": "react-router build && mkdir -p dist && cp -r build/client/* dist/",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
+    "preview": "vite preview --outDir dist",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {

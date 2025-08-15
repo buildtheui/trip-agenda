@@ -263,8 +263,8 @@ export const itinerary: ItineraryDay[] = [
     day: 4,
     city: "Barcelona",
     country: "España",
-    title: "Viaje a Barcelona",
-    description: "Viaje matutino, exploración de Barcelona por la tarde",
+    title: "Llegada a Barcelona y Centro Histórico",
+    description: "Viaje matutino, Las Ramblas, Barrio Gótico y Barceloneta",
     activities: [
       {
         time: "08:00",
@@ -287,35 +287,45 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "14:00",
-        activity: "Almuerzo en el Barrio Gótico",
+        activity: "Almuerzo en Restaurante Ocaña",
         type: "food",
-        notes: "Almuerzo catalán tradicional. Probar pa amb tomàquet.",
+        notes:
+          "Almuerzo en Ocaña, Pl. Reial, 13-15, Ciutat Vella. Cocina mediterránea con vista a la Plaza Real.",
       },
       {
         time: "15:30",
+        activity: "Paseo por Las Ramblas",
+        type: "sightseeing",
+        notes:
+          "Gratis. Famosa calle peatonal. Cuidado con carteristas. Artistas callejeros y ambiente único.",
+      },
+      {
+        time: "16:30",
         activity: "Barrio Gótico (Barri Gòtic)",
         type: "sightseeing",
         notes:
-          "Gratis. Callejones medievales, murallas romanas, exterior de la Catedral.",
+          "Gratis. Callejones medievales, murallas romanas, Catedral de Barcelona y Plaza del Rey.",
       },
       {
-        time: "17:00",
-        activity: "Paseo por Las Ramblas",
+        time: "18:00",
+        activity: "Parc de la Ciutadella",
         type: "sightseeing",
-        notes: "Gratis. Famosa calle peatonal. Cuidado con carteristas.",
-      },
-      {
-        time: "18:30",
-        activity: "Catedral de Barcelona",
-        type: "culture",
         notes:
-          "€9 entrada o gratis en ciertos horarios. Hermosa arquitectura gótica.",
+          "Gratis. Parque histórico con la cascada monumental y el Arco de Triunfo de Barcelona.",
       },
       {
-        time: "20:00",
-        activity: "Cena en el Barrio Gótico",
+        time: "19:30",
+        activity: "Playa Barceloneta",
+        type: "sightseeing",
+        notes:
+          "Gratis. Paseo por la playa más famosa de Barcelona. Perfecto para el atardecer.",
+      },
+      {
+        time: "21:00",
+        activity: "Cena en la Barceloneta",
         type: "food",
-        notes: "Cena temprana. Probar tapas y vino local.",
+        notes:
+          "Cena de mariscos junto a la playa. Probar paella o fideuà con vistas al mar.",
       },
     ],
     accommodation: {
@@ -330,67 +340,65 @@ export const itinerary: ItineraryDay[] = [
       madrid_barcelona: "Tren AVE de alta velocidad (€39-59)",
       local: "Pase TMB 3 días (€23.70)",
     },
-    baseBudget: 120,
-    tips: "Reservar tren AVE con anticipación. Obtener tarjeta de transporte TMB en estación Sants.",
+    baseBudget: 115,
+    tips: "Reservar tren AVE con anticipación. Obtener tarjeta de transporte TMB en estación Sants. Reservar mesa en Ocaña con anticipación.",
   },
   {
     date: "2025-09-18",
     day: 5,
     city: "Barcelona",
     country: "España",
-    title: "Gaudí y Lugares Destacados de Barcelona",
-    description: "Sagrada Família, Park Güell y playa",
+    title: "Ruta Completa de Gaudí",
+    description: "Sagrada Família, Park Güell, Casa Batlló y Fuente Mágica",
     activities: [
       {
         time: "09:00",
         activity: "Sagrada Família",
         type: "culture",
         notes:
-          "€26 con acceso a la torre. ¡Reservar entrada con horario online! 2-3 horas.",
+          "€26 con acceso a la torre. ¡Reservar entrada con horario online! Visita de 2-3 horas. Obra maestra de Gaudí.",
       },
       {
-        time: "12:00",
-        activity: "Casa Batlló",
-        type: "culture",
-        notes: "€29 entrada. Increíble edificio de Gaudí. 1.5 horas.",
-      },
-      {
-        time: "14:00",
-        activity: "Descanso para almorzar",
-        type: "food",
-        notes: "Almuerzo ligero cerca de Passeig de Gràcia",
-      },
-      {
-        time: "15:00",
+        time: "12:30",
         activity: "Park Güell",
         type: "sightseeing",
         notes:
-          "€10 entrada a zona monumental. Reservar online. Parque cubierto de mosaicos con vistas de la ciudad.",
+          "€10 entrada a zona monumental. Reservar online. Parque cubierto de mosaicos con vistas panorámicas de Barcelona.",
       },
       {
-        time: "17:00",
-        activity: "Descanso en el hotel",
-        type: "rest",
-        notes: "Tiempo de siesta. Prepararse para la noche.",
+        time: "15:00",
+        activity: "Almuerzo en El Corte Inglés",
+        type: "food",
+        notes:
+          "Almuerzo en El Corte Inglés, Pl. de Catalunya, 14, L'Eixample. Alternativa: Mercado de la Boquería (Las Ramblas) para tapas y productos locales.",
+      },
+      {
+        time: "16:30",
+        activity: "Casa Batlló",
+        type: "culture",
+        notes:
+          "€29 entrada. Increíble edificio modernista de Gaudí en Passeig de Gràcia. Visita de 1.5 horas.",
       },
       {
         time: "18:30",
-        activity: "Paseo por la Playa de la Barceloneta",
+        activity: "Paseo por Passeig de Gràcia",
         type: "sightseeing",
-        notes: "Gratis. Hermoso paseo junto al mar. Excelente para fotos.",
+        notes:
+          "Gratis. Avenida de tiendas de lujo y arquitectura modernista. Casa Milà (La Pedrera) vista exterior.",
       },
       {
-        time: "20:00",
-        activity: "Cena de mariscos en la Barceloneta",
+        time: "20:30",
+        activity: "Cena cerca de Plaza España",
         type: "food",
-        notes: "Mariscos frescos junto a la playa. Probar paella o fideuà.",
+        notes:
+          "Cena catalana tradicional cerca de la Fuente Mágica. Prepararse para el espectáculo nocturno.",
       },
       {
-        time: "21:30",
+        time: "22:00",
         activity: "Espectáculo de la Fuente Mágica",
         type: "entertainment",
         notes:
-          "Gratis. Espectáculo de luz y música. Consultar horarios online.",
+          "Gratis. Espectáculo de luz, agua y música en Montjuïc. Horarios: cada 30 min desde las 21:00-23:00.",
       },
     ],
     accommodation: {
@@ -401,8 +409,8 @@ export const itinerary: ItineraryDay[] = [
     transportation: {
       local: "Metro y caminando. Usar pase TMB de 3 días.",
     },
-    baseBudget: 85,
-    tips: "¡Reservar todas las atracciones de Gaudí online con anticipación! Usar zapatos cómodos. Llevar agua.",
+    baseBudget: 80,
+    tips: "¡Reservar Sagrada Família, Park Güell y Casa Batlló online con anticipación! Usar zapatos cómodos. La Fuente Mágica funciona desde las 21:00.",
   },
   {
     date: "2025-09-19",
