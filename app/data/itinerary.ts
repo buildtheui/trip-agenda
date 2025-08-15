@@ -717,8 +717,8 @@ export const itinerary: ItineraryDay[] = [
     day: 10,
     city: "Roma",
     country: "Italia",
-    title: "Ciudad del Vaticano",
-    description: "Museos Vaticanos, Capilla Sixtina y San Pedro",
+    title: "Ciudad del Vaticano y Roma Clásica",
+    description: "Museos Vaticanos, San Pedro y lugares emblemáticos de Roma",
     activities: [
       {
         time: "08:00",
@@ -750,22 +750,24 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "17:30",
-        activity: "Ponte Sant'Angelo",
+        activity: "Colina del Aventino - Ojo de cerradura",
         type: "sightseeing",
         notes:
-          "Gratis. Hermoso puente con estatuas de ángeles. Excelentes fotos.",
+          "Gratis. Vista única de la Basílica de San Pedro a través del ojo de la cerradura.",
       },
       {
         time: "18:30",
-        activity: "Campo de' Fiori",
+        activity: "Jardín de Naranjos (Parco Savello)",
         type: "sightseeing",
-        notes: "Gratis. Plaza animada con mercado (mañanas) y vida nocturna.",
+        notes:
+          "Gratis. Vista panorámica de Roma al atardecer. Perfecto para fotos.",
       },
       {
         time: "20:00",
-        activity: "Cena cerca de Campo de' Fiori",
+        activity: "Cena en Trastevere",
         type: "food",
-        notes: "Restaurante romano local. Probar carciofi alla giudia.",
+        notes:
+          "Restaurante romano auténtico. Probar carciofi alla giudia y saltimbocca alla romana.",
       },
     ],
     accommodation: {
@@ -775,98 +777,17 @@ export const itinerary: ItineraryDay[] = [
     },
     transportation: {
       local:
-        "Metro Línea A hasta Ottaviano para el Vaticano. Caminando para otros sitios.",
+        "Metro Línea A hasta Ottaviano para el Vaticano. Metro y caminando para otros sitios.",
     },
-    baseBudget: 70,
-    tips: "¡Reservar Vaticano online con anticipación! Vestirse modestamente (no shorts/camisetas sin mangas). Llevar agua.",
+    baseBudget: 85,
+    tips: "¡Reservar Vaticano online con anticipación! Vestirse modestamente. Día intenso - usar zapatos cómodos.",
   },
   {
     date: "2025-09-24",
     day: 11,
-    city: "Roma",
-    country: "Italia",
-    title: "Roma Monumental y Barrios Históricos",
-    description: "Exploración de Trastevere, Aventino y Villa Borghese",
-    activities: [
-      {
-        time: "09:00",
-        activity: "Villa Borghese y Galería Borghese",
-        type: "culture",
-        notes:
-          "€13 entrada. ¡Reservar online es esencial! Obras de Bernini, Caravaggio. 2 horas máximo.",
-      },
-      {
-        time: "11:30",
-        activity: "Parque Villa Borghese",
-        type: "sightseeing",
-        notes:
-          "Gratis. Hermoso parque con jardines y vistas panorámicas de Roma.",
-      },
-      {
-        time: "13:00",
-        activity: "Almuerzo en Trastevere",
-        type: "food",
-        notes: "Almuerzo en osteria tradicional. Probar carciofi alla romana.",
-      },
-      {
-        time: "14:30",
-        activity: "Basílica de Santa María en Trastevere",
-        type: "culture",
-        notes:
-          "Gratis. Una de las iglesias más antiguas de Roma con hermosos mosaicos.",
-      },
-      {
-        time: "15:30",
-        activity: "Exploración del barrio de Trastevere",
-        type: "sightseeing",
-        notes: "Gratis. Calles empedradas, arte callejero y ambiente bohemio.",
-      },
-      {
-        time: "17:00",
-        activity: "Colina del Aventino - Ojo de cerradura",
-        type: "sightseeing",
-        notes:
-          "Gratis. Vista única de la Basílica de San Pedro a través del ojo de la cerradura.",
-      },
-      {
-        time: "18:00",
-        activity: "Jardín de Naranjos (Parco Savello)",
-        type: "sightseeing",
-        notes:
-          "Gratis. Vista panorámica de Roma al atardecer. Perfecto para fotos.",
-      },
-      {
-        time: "19:30",
-        activity: "Aperitivo en Testaccio",
-        type: "food",
-        notes:
-          "Zona gastronómica local. Probar aperitivo con cicchetti romanos.",
-      },
-      {
-        time: "21:00",
-        activity: "Cena en Testaccio",
-        type: "food",
-        notes:
-          "Cena en barrio auténtico romano. Probar quinto quarto y vino local.",
-      },
-    ],
-    accommodation: {
-      name: "Hotel Artemide",
-      area: "Cerca de Termini/Escalinata de España",
-      price: "€95/noche",
-    },
-    transportation: {
-      local: "Metro y caminando. Usar Roma Pass.",
-    },
-    baseBudget: 85,
-    tips: "Reservar Galería Borghese online con anticipación. Usar zapatos cómodos para caminar por adoquines. Llevar agua.",
-  },
-  {
-    date: "2025-09-25",
-    day: 12,
     city: "Florencia",
     country: "Italia",
-    title: "Viaje a Florencia",
+    title: "Roma a Florencia",
     description: "Tren de alta velocidad a Florencia, exploración por la tarde",
     activities: [
       {
@@ -936,12 +857,12 @@ export const itinerary: ItineraryDay[] = [
     tips: "Reservar subida a cúpula del Duomo online con anticipación. Florencia es muy caminable. Probar mercados locales.",
   },
   {
-    date: "2025-09-26",
-    day: 13,
-    city: "Venecia",
+    date: "2025-09-25",
+    day: 12,
+    city: "Florencia",
     country: "Italia",
-    title: "Florencia a Venecia",
-    description: "Mañana en Florencia, tarde en Venecia",
+    title: "Florencia Completa",
+    description: "Galería Uffizi, Academia y lo mejor de Florencia",
     activities: [
       {
         time: "08:00",
@@ -959,29 +880,200 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "12:30",
-        activity: "Tren a Venecia",
-        type: "transport",
-        notes: "Trenitalia. 2 horas. €19-35. Directo a Venecia Santa Lucia.",
+        activity: "Almuerzo en el Mercado Central",
+        type: "food",
+        notes:
+          "Mercado gastronómico con especialidades toscanas. Probar panino con lampredotto.",
+      },
+      {
+        time: "14:00",
+        activity: "Piazzale Michelangelo",
+        type: "sightseeing",
+        notes:
+          "Gratis. Vista panorámica espectacular de Florencia. Perfecto para fotos.",
       },
       {
         time: "15:30",
+        activity: "Paseo por Oltrarno y Ponte Vecchio",
+        type: "sightseeing",
+        notes:
+          "Gratis. Talleres artesanales y el famoso puente medieval con joyerías.",
+      },
+      {
+        time: "17:00",
+        activity: "Jardines de Boboli",
+        type: "sightseeing",
+        notes:
+          "€10 entrada. Jardines renacentistas detrás del Palacio Pitti. 1.5 horas.",
+      },
+      {
+        time: "19:00",
+        activity: "Aperitivo florentino",
+        type: "food",
+        notes: "Spritz y aperitivo con vista. Zona Santo Spirito.",
+      },
+      {
+        time: "20:30",
+        activity: "Cena toscana",
+        type: "food",
+        notes:
+          "Bistecca alla fiorentina y Chianti Classico. Trattoria tradicional.",
+      },
+    ],
+    accommodation: {
+      name: "Hotel Davanzati",
+      area: "Centro Histórico",
+      price: "€110/noche",
+      notes: "A distancia caminable de todas las atracciones, cerca del Duomo",
+    },
+    transportation: {
+      local: "Caminando (el centro histórico de Florencia es muy caminable)",
+    },
+    baseBudget: 95,
+    tips: "Reservar Uffizi y Academia online con anticipación. Subir a Piazzale Michelangelo al atardecer para mejores fotos.",
+  },
+  {
+    date: "2025-09-26",
+    day: 13,
+    city: "Verona",
+    country: "Italia",
+    title: "Verona - La Ciudad de Romeo y Julieta",
+    description: "Tren a Verona, Arena, Casa de Julieta y centro histórico",
+    activities: [
+      {
+        time: "09:00",
+        activity: "Tren Florencia a Verona",
+        type: "transport",
+        notes: "Trenitalia. 1.5 horas. €19-35. Llegada a Verona Porta Nuova.",
+      },
+      {
+        time: "11:00",
+        activity: "Check-in y orientación",
+        type: "accommodation",
+        notes: "Hotel cerca del centro histórico. Caminar desde la estación.",
+      },
+      {
+        time: "12:00",
+        activity: "Arena de Verona",
+        type: "culture",
+        notes:
+          "€10 entrada. Anfiteatro romano del siglo I, mejor conservado que el Coliseo. 1.5 horas.",
+      },
+      {
+        time: "14:00",
+        activity: "Almuerzo en Piazza Bra",
+        type: "food",
+        notes: "Almuerzo con vista a la Arena. Probar risotto all'Amarone.",
+      },
+      {
+        time: "15:30",
+        activity: "Casa de Julieta y Balcón",
+        type: "sightseeing",
+        notes:
+          "€6 entrada al museo. Icónico balcón de Romeo y Julieta. Patio gratis para fotos.",
+      },
+      {
+        time: "16:30",
+        activity: "Piazza delle Erbe",
+        type: "sightseeing",
+        notes:
+          "Gratis. Plaza del mercado medieval con frescos y Torre dei Lamberti.",
+      },
+      {
+        time: "17:30",
+        activity: "Torre dei Lamberti",
+        type: "sightseeing",
+        notes:
+          "€8 entrada. Subir en ascensor para vista panorámica de Verona. 84 metros de altura.",
+      },
+      {
+        time: "18:30",
+        activity: "Castelvecchio y Puente Scaligero",
+        type: "culture",
+        notes:
+          "€6 entrada al museo. Castillo medieval y puente fortificado sobre el río Adige.",
+      },
+      {
+        time: "20:00",
+        activity: "Aperitivo en el centro histórico",
+        type: "food",
+        notes: "Spritz Aperol (nació en Veneto) y cicchetti locales.",
+      },
+      {
+        time: "21:00",
+        activity: "Cena veronesa",
+        type: "food",
+        notes: "Especialidades: pastissada de caval y vino Valpolicella.",
+      },
+    ],
+    accommodation: {
+      name: "Hotel Milano",
+      area: "Centro Histórico",
+      price: "€95/noche",
+      notes: "A distancia caminable de Arena y Casa de Julieta",
+    },
+    transportation: {
+      intercity: "Tren Trenitalia Florencia-Verona (€19-35)",
+      local: "Caminando (centro histórico muy compacto)",
+    },
+    baseBudget: 75,
+    tips: "Verona es muy caminable. Si hay opera en la Arena, considerar comprar tickets. Reservar mesa para cena con anticipación.",
+  },
+  {
+    date: "2025-09-27",
+    day: 14,
+    city: "Venecia",
+    country: "Italia",
+    title: "Verona a Venecia",
+    description: "Mañana en Verona, tarde en Venecia",
+    activities: [
+      {
+        time: "09:00",
+        activity: "Basílica de San Zeno Maggiore",
+        type: "culture",
+        notes:
+          "€3 entrada. Obra maestra del románico italiano. Frescos y cripta antigua.",
+      },
+      {
+        time: "10:30",
+        activity: "Giardino Giusti",
+        type: "sightseeing",
+        notes:
+          "€10 entrada. Jardín renacentista con laberinto y vistas panorámicas de la ciudad.",
+      },
+      {
+        time: "12:00",
+        activity: "Tren Verona a Venecia",
+        type: "transport",
+        notes:
+          "Trenitalia. 1 hora 15 minutos. €12-25. Directo a Venecia Santa Lucia.",
+      },
+      {
+        time: "14:00",
         activity: "Llegada a Venecia y check-in",
         type: "accommodation",
         notes:
           "Taxi acuático o vaporetto desde la estación. ¡Venecia no tiene coches!",
       },
       {
-        time: "17:00",
+        time: "15:30",
         activity: "Plaza San Marcos (Piazza San Marco)",
         type: "sightseeing",
         notes: "Gratis. El corazón de Venecia. Arquitectura increíble.",
       },
       {
-        time: "18:00",
+        time: "16:30",
         activity: "Basílica de San Marcos",
         type: "culture",
         notes:
           "Entrada gratuita. €5 para Pala d'Oro. Mosaicos bizantinos. Reservar sin cola online.",
+      },
+      {
+        time: "18:00",
+        activity: "Campanile de San Marcos",
+        type: "sightseeing",
+        notes:
+          "€10 entrada. Subir en ascensor para vista panorámica de Venecia y la laguna.",
       },
       {
         time: "19:30",
@@ -1004,15 +1096,15 @@ export const itinerary: ItineraryDay[] = [
       notes: "Ubicación central, fácil acceso a las principales atracciones",
     },
     transportation: {
-      florence_venice: "Tren Trenitalia (€19-35)",
-      local: "Pase vaporetto (autobús acuático) 3 días (€40)",
+      intercity: "Tren Trenitalia Verona-Venecia (€12-25)",
+      local: "Pase vaporetto (autobús acuático) 2 días (€30)",
     },
-    baseBudget: 110,
-    tips: "Reservar Uffizi y San Marcos online. Venecia es cara - presupuestar en consecuencia. Obtener pase vaporetto.",
+    baseBudget: 95,
+    tips: "Reservar San Marcos online. Obtener pase vaporetto al llegar. Verona-Venecia es ruta muy pintoresca.",
   },
   {
-    date: "2025-09-27",
-    day: 14,
+    date: "2025-09-28",
+    day: 15,
     city: "Venecia y Madrid",
     country: "Italia/España",
     title: "Mañana en Venecia, Regreso a Madrid",
@@ -1086,8 +1178,8 @@ export const itinerary: ItineraryDay[] = [
     tips: "Reservar Palacio Ducal online. Verificar restricciones de equipaje Ryan Air. Permitir tiempo extra para transporte al aeropuerto de Venecia. Empacar souvenirs con cuidado.",
   },
   {
-    date: "2025-09-28",
-    day: 15,
+    date: "2025-09-29",
+    day: 16,
     city: "Madrid",
     country: "España",
     title: "Salida",
@@ -1116,7 +1208,7 @@ export const itinerary: ItineraryDay[] = [
 ];
 
 export const tripSummary: TripSummary = {
-  totalDays: 15,
+  totalDays: 16,
   countries: ["España", "Francia", "Italia"],
   cities: [
     "Madrid",
@@ -1125,29 +1217,31 @@ export const tripSummary: TripSummary = {
     "París",
     "Roma",
     "Florencia",
+    "Verona",
     "Venecia",
   ],
-  baseTotalBudget: 1485,
+  baseTotalBudget: 1560,
   timeDistribution: {
-    spain: { days: 4, percentage: "27%" },
-    france: { days: 2, percentage: "13%" },
-    italy: { days: 8, percentage: "53%" },
-    travel: { days: 1, percentage: "7%" },
+    spain: { days: 4, percentage: "25%" },
+    france: { days: 2, percentage: "12%" },
+    italy: { days: 9, percentage: "56%" },
+    travel: { days: 1, percentage: "6%" },
   },
   keyTransportation: [
     "Madrid-Barcelona: Tren AVE de alta velocidad",
     "Barcelona-París: Vuelo Transavia 6:10-8:10",
     "París-Roma: Vuelo Wizz Air 9:05-11:10",
     "Roma-Florencia: Tren de alta velocidad",
-    "Florencia-Venecia: Tren regional",
+    "Florencia-Verona: Tren regional",
+    "Verona-Venecia: Tren regional",
     "Venecia-Madrid: Vuelo Ryan Air 18:50-21:30",
   ],
   budgetBreakdown: {
-    accommodation: 1220,
+    accommodation: 1315,
     localTransport: 180,
-    attractions: 350,
-    food: 700,
-    intercityTransport: 400,
-    miscellaneous: 135,
+    attractions: 380,
+    food: 740,
+    intercityTransport: 430,
+    miscellaneous: 150,
   },
 };
