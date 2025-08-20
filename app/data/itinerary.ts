@@ -329,12 +329,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Barcelona Gothic",
-      area: "Barrio Gótico",
-      price: "€75/noche",
-      notes:
-        "A distancia caminable de las principales atracciones, Metro cercano",
-      address: "Cerca de la Estación de Metro Liceu",
+      name: "Apartamento en L'Hospitalet de Llobregat",
+      area: "L'Hospitalet de Llobregat",
+      price: "€81.76/noche",
+      notes: "Zona residencial cerca de Barcelona, bien conectado por Metro",
+      address:
+        "Carrer de Besa, 15 Bajos 1, L'Hospitalet de Llobregat, Catalunya 08904, España",
     },
     transportation: {
       madrid_barcelona: "Tren AVE de alta velocidad (€39-59)",
@@ -402,9 +402,9 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Barcelona Gothic",
-      area: "Barrio Gótico",
-      price: "€75/noche",
+      name: "Apartamento en L'Hospitalet de Llobregat",
+      area: "L'Hospitalet de Llobregat",
+      price: "€81.76/noche",
     },
     transportation: {
       local: "Metro y caminando. Usar pase TMB de 3 días.",
@@ -475,11 +475,13 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel des Grands Boulevards",
-      area: "Barrio Latino",
-      price: "€85/noche",
+      name: "Apartamento en Le Kremlin-Bicêtre",
+      area: "Le Kremlin-Bicêtre",
+      price: "€84.76/noche",
       notes:
-        "Ubicación central, cerca del Metro, a distancia caminable de atracciones",
+        "Zona residencial al sur de París, bien conectado por Metro Línea 7",
+      address:
+        "2 Rue Pierre et Marie Curie, Le Kremlin-Bicêtre, Île-de-France 94270, Francia",
     },
     transportation: {
       flight: "Barcelona-París CDG Transavia 6:10-8:10 (€50-80)",
@@ -558,9 +560,9 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel des Grands Boulevards",
-      area: "Barrio Latino",
-      price: "€85/noche",
+      name: "Apartamento en Le Kremlin-Bicêtre",
+      area: "Le Kremlin-Bicêtre",
+      price: "€84.76/noche",
     },
     transportation: {
       versailles: "Tren RER C (€7.30 ida y vuelta)",
@@ -626,11 +628,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Artemide",
-      area: "Cerca de Termini/Escalinata de España",
-      price: "€95/noche",
+      name: "Apartamento con Grazia",
+      area: "Via Gregorio VII",
+      price: "€89.09/noche",
       notes:
-        "Ubicación central, cerca del Metro, a distancia caminable de atracciones",
+        "Zona residencial cerca del Vaticano, bien conectado por transporte público",
+      address: "Via Gregorio VII, 500b, Roma, Lacio 00165, Italia",
     },
     transportation: {
       paris_rome: "Vuelo Wizz Air 9:05-11:10 (€60-120)",
@@ -702,9 +705,9 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Artemide",
-      area: "Cerca de Termini/Escalinata de España",
-      price: "€95/noche",
+      name: "Apartamento con Grazia",
+      area: "Via Gregorio VII",
+      price: "€89.09/noche",
     },
     transportation: {
       local: "Metro y caminando. Usar Roma Pass.",
@@ -771,9 +774,9 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Artemide",
-      area: "Cerca de Termini/Escalinata de España",
-      price: "€95/noche",
+      name: "Apartamento con Grazia",
+      area: "Via Gregorio VII",
+      price: "€89.09/noche",
     },
     transportation: {
       local:
@@ -844,10 +847,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Davanzati",
+      name: "Apartamento con Lorenzo",
       area: "Centro Histórico",
-      price: "€110/noche",
-      notes: "A distancia caminable de todas las atracciones, cerca del Duomo",
+      price: "€122.00/noche",
+      notes: "Ubicación céntrica perfecta para explorar Florencia a pie",
+      address:
+        "Via degli Alfani, 13 Interno 5, Florencia, Toscana 50121, Italia",
     },
     transportation: {
       rome_florence: "Tren de alta velocidad Frecce (€19-45)",
@@ -921,10 +926,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Davanzati",
+      name: "Apartamento con Lorenzo",
       area: "Centro Histórico",
-      price: "€110/noche",
-      notes: "A distancia caminable de todas las atracciones, cerca del Duomo",
+      price: "€122.00/noche",
+      notes: "Ubicación céntrica perfecta para explorar Florencia a pie",
+      address:
+        "Via degli Alfani, 13 Interno 5, Florencia, Toscana 50121, Italia",
     },
     transportation: {
       local: "Caminando (el centro histórico de Florencia es muy caminable)",
@@ -1090,10 +1097,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel ai Reali",
-      area: "Cerca de San Marcos",
-      price: "€120/noche",
-      notes: "Ubicación central, fácil acceso a las principales atracciones",
+      name: "Apartamento con Marcoss",
+      area: "Venecia",
+      price: "€75.92/noche",
+      notes:
+        "Apartamento en Venecia con fácil acceso a las atracciones principales",
+      address: "Via Aleardo Aleardi, 184, Venecia, Véneto 30172, Italia",
     },
     transportation: {
       intercity: "Tren Trenitalia Verona-Venecia (€12-25)",
@@ -1220,7 +1229,7 @@ export const tripSummary: TripSummary = {
     "Verona",
     "Venecia",
   ],
-  baseTotalBudget: 1560,
+  baseTotalBudget: 1335,
   timeDistribution: {
     spain: { days: 4, percentage: "25%" },
     france: { days: 2, percentage: "12%" },
@@ -1237,7 +1246,7 @@ export const tripSummary: TripSummary = {
     "Venecia-Madrid: Vuelo Ryan Air 18:50-21:30",
   ],
   budgetBreakdown: {
-    accommodation: 1315,
+    accommodation: 1090,
     localTransport: 180,
     attractions: 380,
     food: 740,
