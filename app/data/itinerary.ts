@@ -1014,10 +1014,12 @@ export const itinerary: ItineraryDay[] = [
       },
     ],
     accommodation: {
-      name: "Hotel Milano",
-      area: "Centro Histórico",
-      price: "€95/noche",
-      notes: "A distancia caminable de Arena y Casa de Julieta",
+      name: "Apartamento con Marcos",
+      area: "Verona",
+      price: "€56.07/noche",
+      notes:
+        "Apartamento en Verona con fácil acceso a las atracciones principales",
+      address: "Via Ombrone, 6 9, Verona, Véneto 37136, Italia",
     },
     transportation: {
       intercity: "Tren Trenitalia Florencia-Verona (€19-35)",
@@ -1229,7 +1231,7 @@ export const tripSummary: TripSummary = {
     "Verona",
     "Venecia",
   ],
-  baseTotalBudget: 1335,
+  baseTotalBudget: 1295,
   timeDistribution: {
     spain: { days: 4, percentage: "25%" },
     france: { days: 2, percentage: "12%" },
@@ -1246,7 +1248,7 @@ export const tripSummary: TripSummary = {
     "Venecia-Madrid: Vuelo Ryan Air 18:50-21:30",
   ],
   budgetBreakdown: {
-    accommodation: 1090,
+    accommodation: 1052,
     localTransport: 180,
     attractions: 380,
     food: 740,
