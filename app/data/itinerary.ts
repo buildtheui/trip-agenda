@@ -1028,143 +1028,97 @@ export const itinerary: ItineraryDay[] = [
     baseBudget: 75,
     tips: "Verona es muy caminable. Si hay opera en la Arena, considerar comprar tickets. Reservar mesa para cena con anticipación.",
   },
+
   {
     date: "2025-09-27",
     day: 14,
-    city: "Venecia",
-    country: "Italia",
-    title: "Verona a Venecia",
-    description: "Mañana en Verona, tarde en Venecia",
+    city: "Venecia y Madrid",
+    country: "Italia/España",
+    title: "Excursión a Venecia desde Verona, Vuelo a Madrid",
+    description:
+      "Viaje temprano desde Verona, día completo en Venecia, vuelo nocturno a Madrid",
     activities: [
       {
-        time: "09:00",
-        activity: "Basílica de San Zeno Maggiore",
-        type: "culture",
-        notes:
-          "€3 entrada. Obra maestra del románico italiano. Frescos y cripta antigua.",
-      },
-      {
-        time: "10:30",
-        activity: "Giardino Giusti",
-        type: "sightseeing",
-        notes:
-          "€10 entrada. Jardín renacentista con laberinto y vistas panorámicas de la ciudad.",
-      },
-      {
-        time: "12:00",
-        activity: "Tren Verona a Venecia",
+        time: "06:00",
+        activity: "Tren temprano Verona a Venecia",
         type: "transport",
         notes:
-          "Trenitalia. 1 hora 15 minutos. €12-25. Directo a Venecia Santa Lucia.",
+          "Trenitalia. 1 hora 15 minutos. €12-25. Directo a Venecia Santa Lucia. Salida muy temprana.",
       },
       {
-        time: "14:00",
-        activity: "Llegada a Venecia y check-in",
-        type: "accommodation",
-        notes:
-          "Taxi acuático o vaporetto desde la estación. ¡Venecia no tiene coches!",
+        time: "07:30",
+        activity: "Llegada a Venecia y desayuno",
+        type: "food",
+        notes: "Desayuno italiano cerca de la estación. Café y cornetto.",
       },
       {
-        time: "15:30",
+        time: "09:00",
         activity: "Plaza San Marcos (Piazza San Marco)",
         type: "sightseeing",
-        notes: "Gratis. El corazón de Venecia. Arquitectura increíble.",
+        notes:
+          "Gratis. El corazón de Venecia. Arquitectura increíble. Menos multitudes temprano.",
       },
       {
-        time: "16:30",
+        time: "09:30",
         activity: "Basílica de San Marcos",
         type: "culture",
         notes:
           "Entrada gratuita. €5 para Pala d'Oro. Mosaicos bizantinos. Reservar sin cola online.",
       },
       {
-        time: "18:00",
-        activity: "Campanile de San Marcos",
-        type: "sightseeing",
-        notes:
-          "€10 entrada. Subir en ascensor para vista panorámica de Venecia y la laguna.",
-      },
-      {
-        time: "19:30",
-        activity: "Aperitivo con vistas al canal",
-        type: "food",
-        notes: "Spritz Aperol y cicchetti (tapas venecianas).",
-      },
-      {
-        time: "20:30",
-        activity: "Cena cerca de San Marcos",
-        type: "food",
-        notes:
-          "Risotto de mariscos y vino local. Esperar precios más altos en Venecia.",
-      },
-    ],
-    accommodation: {
-      name: "Apartamento con Marcoss",
-      area: "Venecia",
-      price: "€75.92/noche",
-      notes:
-        "Apartamento en Venecia con fácil acceso a las atracciones principales",
-      address: "Via Aleardo Aleardi, 184, Venecia, Véneto 30172, Italia",
-    },
-    transportation: {
-      intercity: "Tren Trenitalia Verona-Venecia (€12-25)",
-      local: "Pase vaporetto (autobús acuático) 2 días (€30)",
-    },
-    baseBudget: 95,
-    tips: "Reservar San Marcos online. Obtener pase vaporetto al llegar. Verona-Venecia es ruta muy pintoresca.",
-  },
-  {
-    date: "2025-09-28",
-    day: 15,
-    city: "Venecia y Madrid",
-    country: "Italia/España",
-    title: "Mañana en Venecia, Regreso a Madrid",
-    description: "Exploración final de Venecia, vuelo nocturno a Madrid",
-    activities: [
-      {
-        time: "09:00",
+        time: "10:30",
         activity: "Palacio Ducal",
         type: "culture",
         notes:
-          "€25 entrada. Reservar online. Ver Puente de los Suspiros desde adentro. 2 horas.",
+          "€25 entrada. Reservar online. Ver Puente de los Suspiros desde adentro. 1.5 horas - visita rápida.",
       },
       {
-        time: "11:30",
+        time: "12:30",
+        activity: "Almuerzo rápido con vistas al canal",
+        type: "food",
+        notes:
+          "Almuerzo ligero y rápido. Probar cicchetti venecianos. Tiempo limitado.",
+      },
+      {
+        time: "12:00",
         activity: "Puente de Rialto y Mercado",
         type: "sightseeing",
         notes:
           "Gratis. Puente icónico sobre el Gran Canal. Mercado fresco cercano.",
       },
       {
-        time: "12:30",
+        time: "13:00",
         activity: "Paseo en góndola",
         type: "experience",
         notes:
           "€80-100 por 30 minutos. Turístico pero mágico. Compartir costo con otros si es posible.",
       },
       {
-        time: "13:30",
-        activity: "Almuerzo con vistas al canal",
-        type: "food",
-        notes: "Última comida italiana. Probar sarde in saor y tiramisú.",
+        time: "14:00",
+        activity: "Paseo final por Venecia y compras",
+        type: "shopping",
+        notes:
+          "Souvenirs de cristal de Murano, últimas fotos. Tiempo limitado por el vuelo.",
       },
       {
         time: "15:00",
-        activity: "Paseo final por Venecia y compras",
-        type: "shopping",
-        notes: "Souvenirs de cristal de Murano, últimas fotos.",
-      },
-      {
-        time: "16:00",
         activity: "Viaje al Aeropuerto de Venecia",
         type: "transport",
-        notes: "Autobús ATVO o taxi acuático al Aeropuerto Marco Polo. 1 hora.",
+        notes:
+          "Autobús ATVO o taxi acuático al Aeropuerto Marco Polo. 1 hora + buffer para llegar 2h antes del vuelo.",
+      },
+      {
+        time: "16:50",
+        activity: "Check-in en aeropuerto (2h antes del vuelo)",
+        type: "transport",
+        notes:
+          "Llegar 2 horas antes del vuelo. Check-in, seguridad y embarque.",
       },
       {
         time: "18:50",
-        activity: "Vuelo Venecia a Madrid (Ryan Air)",
+        activity: "Vuelo Venecia a Madrid (Ryanair FR1207)",
         type: "transport",
-        notes: "Ryan Air 18:50-21:30. Vuelo directo de 2h 40min.",
+        notes: "Ryanair FR1207 18:50-21:30. Vuelo directo de 2h 40min.",
       },
       {
         time: "21:30",
@@ -1181,32 +1135,41 @@ export const itinerary: ItineraryDay[] = [
       notes: "Fácil acceso al aeropuerto para salida matutina",
     },
     transportation: {
+      intercity: "Tren temprano Trenitalia Verona-Venecia (€12-25)",
       venice_airport: "Autobús ATVO (€8) o taxi acuático (€25-35)",
-      flight: "Ryan Air Venecia-Madrid 18:50-21:30 (€80-150)",
+      flight: "Ryanair FR1207 Venecia-Madrid 18:50-21:30",
       madrid_airport: "Metro Línea 8 o taxi al hotel del aeropuerto",
     },
-    baseBudget: 180,
-    tips: "Reservar Palacio Ducal online. Verificar restricciones de equipaje Ryan Air. Permitir tiempo extra para transporte al aeropuerto de Venecia. Empacar souvenirs con cuidado.",
+    baseBudget: 150,
+    tips: "Salida MUY temprana desde Verona. Día muy ajustado en Venecia - llegar al aeropuerto 2h antes (16:50). Empacar la noche anterior. Reservar Palacio Ducal online.",
   },
   {
-    date: "2025-09-29",
-    day: 16,
+    date: "2025-09-28",
+    day: 15,
     city: "Madrid",
     country: "España",
     title: "Salida",
     description: "Vuelo de salida a Bogotá",
     activities: [
       {
-        time: "07:00",
+        time: "05:30",
         activity: "Traslado al aeropuerto",
         type: "transport",
-        notes: "Permitir 2 horas antes del vuelo internacional.",
+        notes:
+          "Salida MUY temprana. Metro Línea 8 o taxi. Llegar 3 horas antes del vuelo internacional.",
       },
       {
-        time: "09:30",
+        time: "06:40",
+        activity: "Check-in en aeropuerto (3h antes del vuelo)",
+        type: "transport",
+        notes: "Check-in internacional, seguridad, inmigración y embarque.",
+      },
+      {
+        time: "09:40",
         activity: "Salida del vuelo a BOG",
         type: "transport",
-        notes: "¡Fin del increíble viaje a Europa! Buen viaje a casa.",
+        notes:
+          "¡Fin del increíble viaje a Europa! Buen viaje a casa. Llegada 13:10 BOG.",
       },
     ],
     accommodation: null,
@@ -1214,12 +1177,12 @@ export const itinerary: ItineraryDay[] = [
       hotel_airport: "Metro Línea 8 o taxi (€30-40)",
     },
     baseBudget: 50,
-    tips: "Hacer check-in online. Llegar 3 horas antes para vuelo internacional. Declarar cualquier souvenir.",
+    tips: "Hacer check-in online. Salida MUY temprana 05:30. Empacar la noche anterior. Llegar 3 horas antes para vuelo internacional. Declarar souvenirs.",
   },
 ];
 
 export const tripSummary: TripSummary = {
-  totalDays: 16,
+  totalDays: 15,
   countries: ["España", "Francia", "Italia"],
   cities: [
     "Madrid",
@@ -1231,12 +1194,12 @@ export const tripSummary: TripSummary = {
     "Verona",
     "Venecia",
   ],
-  baseTotalBudget: 1295,
+  baseTotalBudget: 1219,
   timeDistribution: {
-    spain: { days: 4, percentage: "25%" },
-    france: { days: 2, percentage: "12%" },
-    italy: { days: 9, percentage: "56%" },
-    travel: { days: 1, percentage: "6%" },
+    spain: { days: 4, percentage: "27%" },
+    france: { days: 2, percentage: "13%" },
+    italy: { days: 8, percentage: "53%" },
+    travel: { days: 1, percentage: "7%" },
   },
   keyTransportation: [
     "Madrid-Barcelona: Tren AVE de alta velocidad",
@@ -1244,11 +1207,11 @@ export const tripSummary: TripSummary = {
     "París-Roma: Vuelo Wizz Air 9:05-11:10",
     "Roma-Florencia: Tren de alta velocidad",
     "Florencia-Verona: Tren regional",
-    "Verona-Venecia: Tren regional",
-    "Venecia-Madrid: Vuelo Ryan Air 18:50-21:30",
+    "Verona-Venecia: Excursión de día",
+    "Venecia-Madrid: Vuelo Ryanair FR1207 18:50-21:30",
   ],
   budgetBreakdown: {
-    accommodation: 1052,
+    accommodation: 976,
     localTransport: 180,
     attractions: 380,
     food: 740,
