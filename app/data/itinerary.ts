@@ -201,11 +201,11 @@ export const itinerary: ItineraryDay[] = [
     description: "Ciudad medieval Patrimonio de la Humanidad UNESCO",
     activities: [
       {
-        time: "08:30",
-        activity: "Tren a Toledo",
+        time: "09:15",
+        activity: "Tren RENFE AVANT a Toledo",
         type: "transport",
         notes:
-          "Tren RENFE desde Estación Atocha. 33 minutos. €13.90 ida y vuelta.",
+          "Tren RENFE AVANT desde Madrid-Puerta de Atocha-Almudena Grandes. €22.20 por persona (€44.40 total para 2).",
       },
       {
         time: "10:00",
@@ -239,10 +239,11 @@ export const itinerary: ItineraryDay[] = [
         notes: "Gratis. Vista panorámica impresionante. Perfecto para fotos.",
       },
       {
-        time: "18:30",
-        activity: "Tren de regreso a Madrid",
+        time: "18:45",
+        activity: "Tren RENFE AVANT de regreso a Madrid",
         type: "transport",
-        notes: "De vuelta a Madrid para cenar y descansar.",
+        notes:
+          "Tren RENFE AVANT Toledo a Madrid-Puerta de Atocha-Almudena Grandes. €22.20 por persona.",
       },
     ],
     accommodation: {
@@ -252,11 +253,12 @@ export const itinerary: ItineraryDay[] = [
       address: "C. de la Ballesta, 18, Centro, 28004 Madrid, Spain",
     },
     transportation: {
-      primary: "Tren RENFE Madrid-Toledo (€13.90 ida y vuelta)",
+      primary:
+        "Tren RENFE AVANT Madrid-Toledo (€44.40 ida y vuelta para 2 personas)",
       local: "Caminando en Toledo (centro histórico muy caminable)",
     },
-    baseBudget: 75,
-    tips: "Usar zapatos muy cómodos - muchos adoquines. Llevar agua. Reservar tickets de tren con anticipación.",
+    baseBudget: 106,
+    tips: "Usar zapatos muy cómodos - muchos adoquines. Llevar agua.",
   },
   {
     date: "2025-09-17",
@@ -273,14 +275,14 @@ export const itinerary: ItineraryDay[] = [
         notes: "Tomar Metro Línea 1 hasta Atocha Renfe",
       },
       {
-        time: "09:30",
-        activity: "Tren de alta velocidad a Barcelona",
+        time: "10:02",
+        activity: "Tren OUIGO de alta velocidad a Barcelona",
         type: "transport",
         notes:
-          "Tren AVE 2.5-3 horas. €39-59. Reservar con anticipación para mejores precios.",
+          "Tren OUIGO Madrid-Puerta de Atocha-Almudena Grandes a Barcelona-Sants. 3h02 minutos. €78 para 2 personas.",
       },
       {
-        time: "12:30",
+        time: "13:04",
         activity: "Llegada a Barcelona y check-in",
         type: "accommodation",
         notes: "Tomar Metro L3 desde Sants hasta estación Liceu",
@@ -337,11 +339,11 @@ export const itinerary: ItineraryDay[] = [
         "Carrer de Besa, 15 Bajos 1, L'Hospitalet de Llobregat, Catalunya 08904, España",
     },
     transportation: {
-      madrid_barcelona: "Tren AVE de alta velocidad (€39-59)",
+      madrid_barcelona: "Tren OUIGO de alta velocidad (€78 para 2 personas)",
       local: "Pase TMB 3 días (€23.70)",
     },
-    baseBudget: 115,
-    tips: "Reservar tren AVE con anticipación. Obtener tarjeta de transporte TMB en estación Sants. Reservar mesa en Ocaña con anticipación.",
+    baseBudget: 144,
+    tips: "Obtener tarjeta de transporte TMB en estación Sants. Reservar mesa en Ocaña con anticipación.",
   },
   {
     date: "2025-09-18",
@@ -794,14 +796,14 @@ export const itinerary: ItineraryDay[] = [
     description: "Tren de alta velocidad a Florencia, exploración por la tarde",
     activities: [
       {
-        time: "08:30",
-        activity: "Tren de alta velocidad Roma a Florencia",
+        time: "09:43",
+        activity: "Tren Italo de alta velocidad Roma a Florencia",
         type: "transport",
         notes:
-          "Trenitalia Frecce. 1.5 horas. €19-45. Reservar con anticipación para mejores precios.",
+          "Tren Italo 9920 Roma Termini a Firenze S.M. 1h34 minutos. €39.80 para 2 personas (€19.90 cada uno).",
       },
       {
-        time: "10:30",
+        time: "11:17",
         activity: "Llegada a Florencia y check-in",
         type: "accommodation",
         notes:
@@ -855,10 +857,10 @@ export const itinerary: ItineraryDay[] = [
         "Via degli Alfani, 13 Interno 5, Florencia, Toscana 50121, Italia",
     },
     transportation: {
-      rome_florence: "Tren de alta velocidad Frecce (€19-45)",
+      rome_florence: "Tren Italo de alta velocidad (€39.80 para 2 personas)",
       local: "Caminando (el centro histórico de Florencia es muy caminable)",
     },
-    baseBudget: 85,
+    baseBudget: 93,
     tips: "Reservar subida a cúpula del Duomo online con anticipación. Florencia es muy caminable. Probar mercados locales.",
   },
   {
@@ -948,13 +950,14 @@ export const itinerary: ItineraryDay[] = [
     description: "Tren a Verona, Arena, Casa de Julieta y centro histórico",
     activities: [
       {
-        time: "09:00",
-        activity: "Tren Florencia a Verona",
+        time: "09:05",
+        activity: "Tren Italo Florencia a Verona",
         type: "transport",
-        notes: "Trenitalia. 1.5 horas. €19-35. Llegada a Verona Porta Nuova.",
+        notes:
+          "Tren Italo 8954 Firenze S.M. a Verona P.N. 1h33 minutos. €35.80 para 2 personas (€17.90 cada uno).",
       },
       {
-        time: "11:00",
+        time: "10:38",
         activity: "Check-in y orientación",
         type: "accommodation",
         notes: "Hotel cerca del centro histórico. Caminar desde la estación.",
@@ -1022,10 +1025,10 @@ export const itinerary: ItineraryDay[] = [
       address: "Via Ombrone, 6 9, Verona, Véneto 37136, Italia",
     },
     transportation: {
-      intercity: "Tren Trenitalia Florencia-Verona (€19-35)",
+      intercity: "Tren Italo Florencia-Verona (€35.80 para 2 personas)",
       local: "Caminando (centro histórico muy compacto)",
     },
-    baseBudget: 75,
+    baseBudget: 84,
     tips: "Verona es muy caminable. Si hay opera en la Arena, considerar comprar tickets. Reservar mesa para cena con anticipación.",
   },
 
@@ -1039,14 +1042,14 @@ export const itinerary: ItineraryDay[] = [
       "Viaje temprano desde Verona, día completo en Venecia, vuelo nocturno a Madrid",
     activities: [
       {
-        time: "06:00",
+        time: "07:22",
         activity: "Tren temprano Verona a Venecia",
         type: "transport",
         notes:
-          "Trenitalia. 1 hora 15 minutos. €12-25. Directo a Venecia Santa Lucia. Salida muy temprana.",
+          "Trenitalia Regionale 16017 Verona Porta Nuova a Venezia S. Lucia. 1h28 minutos. €20.70 para 2 personas (€10.35 cada uno).",
       },
       {
-        time: "07:30",
+        time: "08:50",
         activity: "Llegada a Venecia y desayuno",
         type: "food",
         notes: "Desayuno italiano cerca de la estación. Café y cornetto.",
@@ -1125,23 +1128,24 @@ export const itinerary: ItineraryDay[] = [
         activity: "Llegada a Madrid Barajas y hotel",
         type: "accommodation",
         notes:
-          "Metro Línea 8 al centro o taxi al hotel del aeropuerto. Descansar antes del vuelo de salida.",
+          "Metro Línea 8 al centro o taxi al Airbnb con Maureen. Descansar antes del vuelo de salida.",
       },
     ],
     accommodation: {
-      name: "Hotel Aeropuerto Madrid",
-      area: "Cerca del Aeropuerto",
-      price: "€70/noche",
-      notes: "Fácil acceso al aeropuerto para salida matutina",
+      name: "Airbnb con Maureen",
+      area: "Madrid",
+      price: "€64.23/noche",
+      notes: "Alojamiento en Madrid para la última noche",
+      address: "Avenida Quinta, # 4, Madrid, Madrid 28022, España",
     },
     transportation: {
-      intercity: "Tren temprano Trenitalia Verona-Venecia (€12-25)",
+      intercity: "Tren Trenitalia Verona-Venecia (€20.70 para 2 personas)",
       venice_airport: "Autobús ATVO (€8) o taxi acuático (€25-35)",
       flight: "Ryanair FR1207 Venecia-Madrid 18:50-21:30",
-      madrid_airport: "Metro Línea 8 o taxi al hotel del aeropuerto",
+      madrid_airport: "Metro Línea 8 o taxi al Airbnb con Maureen",
     },
-    baseBudget: 150,
-    tips: "Salida MUY temprana desde Verona. Día muy ajustado en Venecia - llegar al aeropuerto 2h antes (16:50). Empacar la noche anterior. Reservar Palacio Ducal online.",
+    baseBudget: 146,
+    tips: "Salida MUY temprana desde Verona. Día muy ajustado en Venecia - llegar al aeropuerto 2h antes (16:50). Empacar la noche anterior.",
   },
   {
     date: "2025-09-28",
@@ -1194,7 +1198,7 @@ export const tripSummary: TripSummary = {
     "Verona",
     "Venecia",
   ],
-  baseTotalBudget: 1219,
+  baseTotalBudget: 1286,
   timeDistribution: {
     spain: { days: 4, percentage: "27%" },
     france: { days: 2, percentage: "13%" },
@@ -1202,20 +1206,21 @@ export const tripSummary: TripSummary = {
     travel: { days: 1, percentage: "7%" },
   },
   keyTransportation: [
-    "Madrid-Barcelona: Tren AVE de alta velocidad",
+    "Madrid-Toledo: Tren RENFE AVANT (€44.40 ida y vuelta)",
+    "Madrid-Barcelona: Tren OUIGO de alta velocidad (€78)",
     "Barcelona-París: Vuelo Transavia 6:10-8:10",
     "París-Roma: Vuelo Wizz Air 9:05-11:10",
-    "Roma-Florencia: Tren de alta velocidad",
-    "Florencia-Verona: Tren regional",
-    "Verona-Venecia: Excursión de día",
+    "Roma-Florencia: Tren Italo de alta velocidad (€39.80)",
+    "Florencia-Verona: Tren Italo (€35.80)",
+    "Verona-Venecia: Tren Trenitalia regional (€20.70)",
     "Venecia-Madrid: Vuelo Ryanair FR1207 18:50-21:30",
   ],
   budgetBreakdown: {
-    accommodation: 976,
+    accommodation: 970,
     localTransport: 180,
     attractions: 380,
     food: 740,
-    intercityTransport: 430,
+    intercityTransport: 508,
     miscellaneous: 150,
   },
 };
