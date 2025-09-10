@@ -14,6 +14,13 @@ export interface Activity {
     | "arrival"
     | "experience";
   notes: string;
+  weather?: {
+    temperatureMin: number;
+    temperatureMax: number;
+    weatherCode: number;
+    icon: string;
+    description: string;
+  };
 }
 
 export interface Accommodation {
@@ -53,6 +60,13 @@ export interface ItineraryDay {
   baseBudget: number;
   budget?: string;
   tips: string;
+  weather?: {
+    temperatureMin: number;
+    temperatureMax: number;
+    weatherCode: number;
+    icon: string;
+    description: string;
+  };
 }
 
 export interface TripSummary {

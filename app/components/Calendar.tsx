@@ -1,8 +1,9 @@
 import React from "react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { MapPin, Clock, Home, Train, Lightbulb } from "lucide-react";
+import { MapPin, Clock, Home, Train, Lightbulb, CloudSun } from "lucide-react";
 import type { ItineraryDay } from "../data/itinerary";
+import { useWeather } from "../hooks/useWeather";
 
 interface CalendarProps {
   itinerary: ItineraryDay[];
@@ -24,14 +25,24 @@ const Calendar: React.FC<CalendarProps> = ({
   selectedDay,
   setSelectedDay,
 }) => {
+  const { getItineraryWithWeather, loading, error, weatherData } =
+    useWeather(itinerary);
+  const itineraryWithWeather = getItineraryWithWeather();
+
   return (
     <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg">
       <h2 className="text-3xl font-semibold text-gray-800 mb-5 text-center">
         Tu Itinerario Diario
       </h2>
 
+      {error && (
+        <div className="text-center py-2 text-amber-600 text-sm">
+          <span>⚠️ No se pudo cargar la información meteorológica</span>
+        </div>
+      )}
+
       <div className="grid grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-4 justify-stretch">
-        {itinerary.map((day) => (
+        {itineraryWithWeather.map((day) => (
           <div
             key={day.day}
             className={`
@@ -64,7 +75,40 @@ const Calendar: React.FC<CalendarProps> = ({
                   locale: es,
                 })}
               </div>
-              <div className="text-base">{getCountryFlag(day.country)}</div>
+              <div className="flex items-center gap-2">
+                <div className="text-base">{getCountryFlag(day.country)}</div>
+                {day.weather ? (
+                  <div className="flex items-center gap-2 text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-3 py-2 rounded-full backdrop-blur-sm border border-white/30">
+                    <span className="text-xl">{day.weather.icon}</span>
+                    <div className="flex items-center gap-1">
+                      <span
+                        className={`font-bold text-sm ${selectedDay === day.day ? "text-white" : "text-blue-700"}`}
+                      >
+                        {day.weather.temperatureMax}°
+                      </span>
+                      <span
+                        className={`text-xs ${selectedDay === day.day ? "text-white/60" : "text-gray-500"}`}
+                      >
+                        /
+                      </span>
+                      <span
+                        className={`font-medium text-sm ${selectedDay === day.day ? "text-white/90" : "text-blue-600"}`}
+                      >
+                        {day.weather.temperatureMin}°
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-sm bg-gray-200/50 px-3 py-2 rounded-full backdrop-blur-sm border border-gray-300/30 animate-pulse">
+                    <div className="w-5 h-5 bg-gray-300/60 rounded-full"></div>
+                    <div className="flex items-center gap-1">
+                      <div className="w-6 h-3 bg-gray-300/60 rounded"></div>
+                      <span className="text-xs text-gray-400">/</span>
+                      <div className="w-6 h-3 bg-gray-300/60 rounded"></div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div>
@@ -134,6 +178,41 @@ const Calendar: React.FC<CalendarProps> = ({
                     </div>
                   ))}
                 </div>
+
+                {day.weather && (
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
+                      <CloudSun size={16} />
+                      Clima del Día
+                    </h4>
+                    <div className="flex gap-2 items-start p-3 bg-white/10 rounded-lg backdrop-blur-lg">
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{day.weather.icon}</span>
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-white/90 text-sm font-medium">
+                              Máxima:
+                            </span>
+                            <span className="text-white font-bold text-lg">
+                              {day.weather.temperatureMax}°C
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-white/90 text-sm font-medium">
+                              Mínima:
+                            </span>
+                            <span className="text-white/80 font-semibold">
+                              {day.weather.temperatureMin}°C
+                            </span>
+                          </div>
+                          <p className="text-xs text-white/70 italic">
+                            {day.weather.description}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
