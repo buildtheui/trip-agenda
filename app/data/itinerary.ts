@@ -1,3 +1,5 @@
+import type { HourlyWeatherData } from "~/services/weatherService";
+
 export interface Activity {
   time: string;
   activity: string;
@@ -20,6 +22,11 @@ export interface Activity {
     weatherCode: number;
     icon: string;
     description: string;
+  };
+  hourlyWeather?: HourlyWeatherData[];
+  blockIcon?: {
+    time: string;
+    weatherIcon?: string | null;
   };
 }
 

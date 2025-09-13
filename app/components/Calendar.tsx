@@ -159,11 +159,14 @@ const Calendar: React.FC<CalendarProps> = ({
                   {day.activities.map((activity, index) => (
                     <div
                       key={index}
-                      className="flex gap-3 mb-3 p-2 bg-white/10 rounded-lg backdrop-blur-lg"
+                      className="flex gap-3 mb-3 p-2 items-center bg-white/10 rounded-lg backdrop-blur-lg"
                     >
-                      <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
-                        <Clock size={10} />
-                        {activity.time}
+                      <div className="flex flex-col gap-1 items-center">
+                        <p>{activity.blockIcon?.weatherIcon}</p>
+                        <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
+                          <Clock size={10} />
+                          {activity.time}
+                        </div>
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">

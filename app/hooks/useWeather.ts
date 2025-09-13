@@ -4,6 +4,7 @@ import {
   getWeatherForCity,
   getWeatherDescription,
   type DailyWeatherData,
+  type HourlyWeatherData,
 } from "../services/weatherService";
 
 export const useWeather = (itinerary: ItineraryDay[]) => {
@@ -75,6 +76,14 @@ export const useWeather = (itinerary: ItineraryDay[]) => {
         return day;
       }
 
+      day.activities.forEach((activity) => {
+        activity.hourlyWeather = dayWeather.hourly;
+        activity.blockIcon = {
+          time: activity.time,
+          weatherIcon: getIconForTime(dayWeather.hourly, activity.time),
+        };
+      });
+
       // Add weather to day
       const dayWithWeather: ItineraryDay = {
         ...day,
@@ -96,4 +105,91 @@ export const useWeather = (itinerary: ItineraryDay[]) => {
     error,
     getItineraryWithWeather,
   };
+};
+
+/**
+ * Gets the weather icon for a specific time by finding the floor hour interval
+ * @param hourlyData - Array of hourly weather data
+ * @param time - Time in 24-hour format (e.g., "09:30", "14:15")
+ * @returns The weather icon string for the floor hour, or null if not found
+ */
+export const getIconForTime = (
+  hourlyData: HourlyWeatherData[],
+  time: string
+): string | null => {
+  // Parse the input time to get the hour
+  const [hourStr, minuteStr] = time.split(":");
+  const targetHour = parseInt(hourStr, 10);
+  const targetMinute = parseInt(minuteStr, 10);
+
+  // Validate input
+  if (
+    isNaN(targetHour) ||
+    isNaN(targetMinute) ||
+    targetHour < 0 ||
+    targetHour > 23 ||
+    targetMinute < 0 ||
+    targetMinute > 59
+  ) {
+    return null;
+  }
+
+  // Find the hourly data entry that matches the floor hour
+  const matchingEntry = hourlyData.find((entry) => {
+    const entryDate = new Date(entry.time);
+    const entryHour = entryDate.getHours();
+    return entryHour === targetHour;
+  });
+
+  return matchingEntry ? matchingEntry.icon : null;
+};
+
+/**
+ * Gets the complete weather data for a specific time by finding the floor hour interval
+ * @param hourlyData - Array of hourly weather data
+ * @param time - Time in 24-hour format (e.g., "09:30", "14:15")
+ * @returns The weather data object for the floor hour, or null if not found
+ */
+export const getWeatherDataForTime = (
+  hourlyData: HourlyWeatherData[],
+  time: string
+): HourlyWeatherData | null => {
+  // Parse the input time to get the hour
+  const [hourStr, minuteStr] = time.split(":");
+  const targetHour = parseInt(hourStr, 10);
+  const targetMinute = parseInt(minuteStr, 10);
+
+  // Validate input
+  if (
+    isNaN(targetHour) ||
+    isNaN(targetMinute) ||
+    targetHour < 0 ||
+    targetHour > 23 ||
+    targetMinute < 0 ||
+    targetMinute > 59
+  ) {
+    return null;
+  }
+
+  // Find the hourly data entry that matches the floor hour
+  const matchingEntry = hourlyData.find((entry) => {
+    const entryDate = new Date(entry.time);
+    const entryHour = entryDate.getHours();
+    return entryHour === targetHour;
+  });
+
+  return matchingEntry || null;
+};
+
+/**
+ * Gets weather icons for multiple times
+ * @param hourlyData - Array of hourly weather data
+ * @param times - Array of times in 24-hour format
+ * @returns Array of icons in the same order as the input times
+ */
+export const getIconsForTimes = (
+  hourlyData: HourlyWeatherData[],
+  times: string[]
+): (string | null)[] => {
+  return times.map((time) => getIconForTime(hourlyData, time));
 };

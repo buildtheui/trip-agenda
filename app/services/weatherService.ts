@@ -8,12 +8,21 @@ export interface WeatherData {
   time: Date;
 }
 
+export interface HourlyWeatherData {
+  time: string;
+  weatherCode: number;
+  temperature: number;
+  icon: string;
+  description: string;
+}
+
 export interface DailyWeatherData {
   date: string;
   weatherCode: number;
   temperatureMin: number;
   temperatureMax: number;
   icon: string;
+  hourly: HourlyWeatherData[];
 }
 
 // Weather code to icon mapping based on WMO Weather interpretation codes
@@ -107,11 +116,12 @@ export const getWeatherForCity = async (
       apiDate = demoDate.toISOString().split("T")[0];
     }
 
-    // Parameters for Open-Meteo API
+    // Parameters for Open-Meteo API - now including hourly data
     const params = {
       latitude: [lat],
       longitude: [lon],
       daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
+      hourly: ["weather_code", "temperature_2m"],
       timezone: "auto",
       start_date: apiDate,
       end_date: apiDate,
@@ -133,6 +143,7 @@ export const getWeatherForCity = async (
     }
 
     const daily = response.daily()!;
+    const hourly = response.hourly()!;
 
     // Extract daily weather data
     const weatherCodeVar = daily.variables(0);
@@ -162,12 +173,63 @@ export const getWeatherForCity = async (
     const temperatureMax = temperatureMaxArray[0];
     const temperatureMin = temperatureMinArray[0];
 
-    const result = {
+    // Extract hourly weather data
+    const hourlyWeatherData: HourlyWeatherData[] = [];
+
+    if (hourly) {
+      const hourlyWeatherCodeVar = hourly.variables(0);
+      const hourlyTemperatureVar = hourly.variables(1);
+
+      if (hourlyWeatherCodeVar && hourlyTemperatureVar) {
+        const hourlyWeatherCodes = hourlyWeatherCodeVar.valuesArray();
+        const hourlyTemperatures = hourlyTemperatureVar.valuesArray();
+
+        // Generate time array from bigint timestamps
+        const utcOffsetSeconds = response.utcOffsetSeconds();
+        const timeArray = [
+          ...Array(
+            (Number(hourly.timeEnd()) - Number(hourly.time())) /
+              hourly.interval()
+          ),
+        ].map(
+          (_, i) =>
+            new Date(
+              (Number(hourly.time()) +
+                i * hourly.interval() +
+                utcOffsetSeconds) *
+                1000
+            )
+        );
+
+        if (hourlyWeatherCodes && hourlyTemperatures && timeArray) {
+          for (
+            let i = 0;
+            i < Math.min(hourlyWeatherCodes.length, timeArray.length);
+            i++
+          ) {
+            const hourlyWeatherCode = Math.round(hourlyWeatherCodes[i]);
+            const hourlyTemperature = Math.round(hourlyTemperatures[i]);
+            const hourlyTime = timeArray[i];
+
+            hourlyWeatherData.push({
+              time: hourlyTime.toISOString(),
+              weatherCode: hourlyWeatherCode,
+              temperature: hourlyTemperature,
+              icon: getWeatherIcon(hourlyWeatherCode),
+              description: getWeatherDescription(hourlyWeatherCode),
+            });
+          }
+        }
+      }
+    }
+
+    const result: DailyWeatherData = {
       date,
       weatherCode: Math.round(weatherCode),
       temperatureMax: Math.round(temperatureMax),
       temperatureMin: Math.round(temperatureMin),
       icon: getWeatherIcon(Math.round(weatherCode)),
+      hourly: hourlyWeatherData,
     };
 
     return result;
@@ -203,4 +265,27 @@ export const getWeatherDescription = (weatherCode: number): string => {
   };
 
   return descriptions[weatherCode] || "Condiciones variables";
+};
+
+// Utility function to get hourly data for specific time ranges
+export const getHourlyDataForTimeRange = (
+  hourlyData: HourlyWeatherData[],
+  startHour: number,
+  endHour: number
+): HourlyWeatherData[] => {
+  return hourlyData.filter((hour) => {
+    const hourTime = new Date(hour.time);
+    const hourOfDay = hourTime.getHours();
+    return hourOfDay >= startHour && hourOfDay <= endHour;
+  });
+};
+
+// Utility function to format time for display
+export const formatHourlyTime = (isoString: string): string => {
+  const date = new Date(isoString);
+  return date.toLocaleTimeString("es-ES", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 };
