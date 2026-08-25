@@ -9,6 +9,7 @@ import {
   Train,
   Lightbulb,
   CloudSun,
+  ExternalLink,
 } from "lucide-react";
 import type { ItineraryDay } from "../data/itinerary";
 import { useWeather } from "../hooks/useWeather";
@@ -198,30 +199,66 @@ const Calendar: React.FC<CalendarProps> = ({
                     <Clock size={16} />
                     Actividades
                   </h4>
-                  {day.activities.map((activity, index) => (
-                    <div
-                      key={index}
-                      className="flex gap-3 mb-3 p-2 items-center bg-white/10 rounded-lg backdrop-blur-lg"
-                    >
-                      <div className="flex flex-col gap-1 items-center">
-                        <p>{activity.blockIcon?.weatherIcon}</p>
-                        <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
-                          <Clock size={10} />
-                          {activity.time}
+                  {day.activities.map((activity, index) => {
+                    const mapsUrl = activity.coordinates
+                      ? `https://www.google.com/maps/search/?api=1&query=${activity.coordinates.lat},${activity.coordinates.lon}`
+                      : null;
+                    const blockClass =
+                      "flex gap-3 mb-3 p-2 items-center bg-white/10 rounded-lg backdrop-blur-lg";
+                    return mapsUrl ? (
+                      <a
+                        key={index}
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Abrir en Google Maps"
+                        onClick={(event) => event.stopPropagation()}
+                        className={`${blockClass} group transition-colors hover:bg-white/20`}
+                      >
+                        <div className="flex flex-col gap-1 items-center">
+                          <p>{activity.blockIcon?.weatherIcon}</p>
+                          <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
+                            <Clock size={10} />
+                            {activity.time}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-semibold text-white/95 text-xs">
+                              {activity.activity}
+                            </span>
+                          </div>
+                          <p className="text-xs text-white/80 m-0 leading-tight">
+                            {activity.notes}
+                          </p>
+                        </div>
+                        <ExternalLink
+                          size={12}
+                          className="shrink-0 text-white/40 transition-colors group-hover:text-white"
+                        />
+                      </a>
+                    ) : (
+                      <div key={index} className={blockClass}>
+                        <div className="flex flex-col gap-1 items-center">
+                          <p>{activity.blockIcon?.weatherIcon}</p>
+                          <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
+                            <Clock size={10} />
+                            {activity.time}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-semibold text-white/95 text-xs">
+                              {activity.activity}
+                            </span>
+                          </div>
+                          <p className="text-xs text-white/80 m-0 leading-tight">
+                            {activity.notes}
+                          </p>
                         </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-semibold text-white/95 text-xs">
-                            {activity.activity}
-                          </span>
-                        </div>
-                        <p className="text-xs text-white/80 m-0 leading-tight">
-                          {activity.notes}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 {day.weather && (
