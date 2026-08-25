@@ -74,13 +74,13 @@ const TripSelector: React.FC = () => {
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                    ? "bg-gray-100 font-semibold text-gray-900"
                     : "text-gray-800 hover:bg-purple-50"
                 }`}
               >
                 <span className="text-base leading-none">{trip.flag}</span>
                 <span className="flex-1 truncate">{trip.title}</span>
-                {active && <Check size={16} />}
+                {active && <Check size={16} className="text-gray-600" />}
               </Link>
             );
           })}
