@@ -16,6 +16,7 @@ export const itinerary: ItineraryDay[] = [
         type: "arrival",
         notes:
           "Vuelo directo Bogotá-JFK, 5h45m. Migración + equipaje puede tomar 45-60 min extra.",
+        coordinates: { lat: 40.6413, lon: -73.7781 },
       },
       {
         time: "15:00",
@@ -23,6 +24,7 @@ export const itinerary: ItineraryDay[] = [
         type: "transport",
         notes:
           "AirTrain JFK ($8.50) hasta Jamaica Station, luego tren E hasta Court Sq-23 St (Long Island City). ~50-60 min total. Comprar OMNY (tap-to-pay con tarjeta/celular, no necesitan MetroCard física) o pases contactless en cualquier estación.",
+        coordinates: { lat: 40.7004, lon: -73.8068 },
       },
       {
         time: "16:00",
@@ -30,6 +32,7 @@ export const itinerary: ItineraryDay[] = [
         type: "accommodation",
         notes:
           "39-05 29th St, Long Island City. Descansar 30-45 min y dejar maletas.",
+        coordinates: { lat: 40.7475, lon: -73.9335 },
       },
       {
         time: "17:30",
@@ -37,6 +40,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. A 8-10 min caminando del hotel. Vista espectacular del Midtown Manhattan skyline al otro lado del río, ideal para las primeras fotos del viaje sin apuro.",
+        coordinates: { lat: 40.7461, lon: -73.9495 },
       },
       {
         time: "19:00",
@@ -50,6 +54,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Las luces se ven mejor de noche. Caminar tranquilo, es normal que esté lleno de gente.",
+        coordinates: { lat: 40.758, lon: -73.9855 },
       },
       {
         time: "20:15",
@@ -57,6 +62,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "20 Times Square (esquina 7th Ave con 47th St), a 2 min caminando de donde están. Es una cafetería real y permanente (no el museo pago), con el sofá naranja icónico, café/postres temáticos. Entrada libre, solo pagan lo que consuman.",
+        coordinates: { lat: 40.7592, lon: -73.9877 },
       },
       {
         time: "21:00",
@@ -64,6 +70,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. A 5 min caminando desde Times Square por la 6th Ave. Ver la plaza icónica de noche.",
+        coordinates: { lat: 40.7587, lon: -73.9787 },
       },
       {
         time: "21:45",
@@ -71,6 +78,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "Pop's Pizza (360 W 42nd St) o Joe's Pizza (1435 Broadway) — ambas a pasos de Times Square, slice desde $4-5, muy recomendadas y rápidas.",
+        coordinates: { lat: 40.7552, lon: -73.9869 },
       },
     ],
     accommodation: {
@@ -80,6 +88,7 @@ export const itinerary: ItineraryDay[] = [
       notes:
         "3 estaciones de metro cerca (7, E, M, G). 15 min en tren directo a Midtown.",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
+      coordinates: { lat: 40.7475, lon: -73.9335 },
     },
     transportation: {
       airport: "AirTrain JFK + tren E hasta Court Sq-23 St (~$8.50 + $2.90)",
@@ -116,6 +125,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "66 Perry St, West Village. Es un edificio residencial real — solo foto desde la vereda, con respeto a los vecinos.",
+        coordinates: { lat: 40.7352, lon: -74.0059 },
       },
       {
         time: "09:50",
@@ -123,6 +133,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "90 Bedford St, a 4 min caminando de Perry St. También residencial, solo foto exterior.",
+        coordinates: { lat: 40.7319, lon: -74.005 },
       },
       {
         time: "10:15",
@@ -130,6 +141,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. El arco icónico, músicos callejeros, ambiente universitario (NYU). Perfecto para caminar sin prisa.",
+        coordinates: { lat: 40.7308, lon: -73.9973 },
       },
       {
         time: "11:30",
@@ -137,6 +149,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Calles adoquinadas, casas históricas. Caminar sin rumbo fijo por Bleecker St y alrededores.",
+        coordinates: { lat: 40.7258, lon: -74.0039 },
       },
       {
         time: "12:30",
@@ -144,6 +157,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "155 Franklin St, Tribeca. ~15-20 min caminando desde el Village, o Metro A/C/E hasta Canal St. Es propiedad privada — solo fotos discretas desde la calle, sin quedarse parados frente al edificio.",
+        coordinates: { lat: 40.7197, lon: -74.0096 },
       },
       {
         time: "13:15",
@@ -151,12 +165,14 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "Tasty Dumpling (42 Mulberry St) o Jin Mei Dumpling (25B Henry St) — dumplings frescos desde $5-15 para los dos. Efectivo recomendado en algunos locales.",
+        coordinates: { lat: 40.7158, lon: -73.9995 },
       },
       {
         time: "14:15",
         activity: "Caminar por Chinatown",
         type: "sightseeing",
         notes: "Gratis. Mercados, tiendas y ambiente único a pocos pasos del almuerzo.",
+        coordinates: { lat: 40.7151, lon: -73.997 },
       },
       {
         time: "15:15",
@@ -164,6 +180,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Entrada peatonal cerca de City Hall (Metro 4/5/6 a Brooklyn Bridge-City Hall). Caminata de 20-25 min sin apuro, con vistas increíbles del Downtown Manhattan y el East River.",
+        coordinates: { lat: 40.7061, lon: -73.9969 },
       },
       {
         time: "16:15",
@@ -171,6 +188,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. El famoso ángulo fotográfico de Washington St con el puente de Manhattan al fondo. Zona muy caminable con tiendas y cafés.",
+        coordinates: { lat: 40.7029, lon: -73.9895 },
       },
       {
         time: "18:30",
@@ -178,6 +196,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "55 Water St, DUMBO. Terraza en el 5to piso con vista directa al Puente de Brooklyn y skyline de Manhattan — mejor momento para verla es justo antes/durante el atardecer. Food hall con muchas opciones, para todos los gustos y presupuestos.",
+        coordinates: { lat: 40.7034, lon: -73.9914 },
       },
     ],
     accommodation: {
@@ -185,6 +204,7 @@ export const itinerary: ItineraryDay[] = [
       area: "Long Island City, Queens",
       price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
+      coordinates: { lat: 40.7475, lon: -73.9335 },
     },
     transportation: {
       local:
@@ -207,6 +227,7 @@ export const itinerary: ItineraryDay[] = [
         activity: "Entrada a Central Park (lado oeste, 79th St)",
         type: "transport",
         notes: "Metro 1 hasta 79 St, caminar 5 min hacia el parque.",
+        coordinates: { lat: 40.7797, lon: -73.9705 },
       },
       {
         time: "09:20",
@@ -214,6 +235,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Vista panorámica desde la torre hacia el Central Park. Abre a las 10am — llegar temprano y disfrutar el camino hasta ahí.",
+        coordinates: { lat: 40.7794, lon: -73.969 },
       },
       {
         time: "10:30",
@@ -221,6 +243,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Una de las esquinas más fotografiadas del parque, con la terraza de piedra tallada. Caminata corta desde el castillo.",
+        coordinates: { lat: 40.7738, lon: -73.9709 },
       },
       {
         time: "11:30",
@@ -228,6 +251,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis sentarse en las escaleras (el ícono de Gossip Girl / El Diablo Viste a la Moda). Si quieren entrar al museo son ~$30 por persona — opcional, no es necesario para la foto de las escaleras.",
+        coordinates: { lat: 40.7794, lon: -73.9632 },
       },
       {
         time: "12:30",
@@ -235,6 +259,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "Bajando hacia Midtown: Sharif's Famous (W 31st St & Broadway) o MOE Eats NYC (120 W 49th St) — platos halal desde $10-12, muy recomendados y abundantes.",
+        coordinates: { lat: 40.7495, lon: -73.9884 },
       },
       {
         time: "13:30",
@@ -242,6 +267,7 @@ export const itinerary: ItineraryDay[] = [
         type: "shopping",
         notes:
           "Gratis caminar. Vitrinas de lujo, arquitectura icónica. Parar en Bryant Park a descansar en las sillas verdes del jardín.",
+        coordinates: { lat: 40.7536, lon: -73.9833 },
       },
       {
         time: "14:15",
@@ -249,6 +275,7 @@ export const itinerary: ItineraryDay[] = [
         type: "culture",
         notes:
           "Entrada gratuita. Edificio Stephen A. Schwarzman, justo al lado de Bryant Park. La Rose Main Reading Room es imperdible.",
+        coordinates: { lat: 40.7532, lon: -73.9822 },
       },
       {
         time: "15:15",
@@ -256,6 +283,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Entrada gratuita. A 10 min caminando de la biblioteca. El techo celestial y el reloj de ópalo son el punto fuerte, ~20-30 min de visita.",
+        coordinates: { lat: 40.7527, lon: -73.9772 },
       },
       {
         time: "16:30",
@@ -263,6 +291,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Reservar entrada con horario ONLINE con anticipación (~$50-60 por persona el mirador). Ir para la puesta de sol (~19:15-19:30 en septiembre) para ver la ciudad de día y de noche desde arriba — este es el mirador que cubre el punto que dejaron abierto en su lista.",
+        coordinates: { lat: 40.7484, lon: -73.9857 },
       },
       {
         time: "20:00",
@@ -270,6 +299,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "240 W 55th St. El bar real que inspiró MacLaren's en How I Met Your Mother, con memorabilia de la serie en las paredes. Comida de pub, precios razonables ($15-20 por plato).",
+        coordinates: { lat: 40.7653, lon: -73.9826 },
       },
     ],
     accommodation: {
@@ -277,6 +307,7 @@ export const itinerary: ItineraryDay[] = [
       area: "Long Island City, Queens",
       price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
+      coordinates: { lat: 40.7475, lon: -73.9335 },
     },
     transportation: {
       local: "Metro líneas 1, 4/5/6, 7. Buena parte del día es caminata dentro de Central Park y Midtown.",
@@ -299,6 +330,7 @@ export const itinerary: ItineraryDay[] = [
         type: "shopping",
         notes:
           "935 Broadway (zona Flatiron). La tienda de Harry Potter más grande del mundo — cerveza de mantequilla, varitas, mercancía exclusiva. Sin costo de entrada, presupuesto según lo que compren.",
+        coordinates: { lat: 40.7392, lon: -73.9898 },
       },
       {
         time: "11:15",
@@ -306,12 +338,14 @@ export const itinerary: ItineraryDay[] = [
         type: "culture",
         notes:
           "130 E 23rd St, a 12 min caminando desde la tienda de Harry Potter. Réplicas de los apartamentos y el Central Perk original de la serie. Entrada de pago (~$40-50 por persona) — es opcional, ya vivieron el 'Central Perk real' el día 1 gratis con solo comprar un café. Salten esto si prefieren ir con calma.",
+        coordinates: { lat: 40.7402, lon: -73.9853 },
       },
       {
         time: "12:30",
         activity: "Almuerzo en zona Flatiron/Union Square",
         type: "food",
         notes: "Cualquier deli o food hall cercano, opciones desde $10-15 por persona.",
+        coordinates: { lat: 40.7359, lon: -73.9911 },
       },
       {
         time: "14:00",
@@ -325,6 +359,7 @@ export const itinerary: ItineraryDay[] = [
         type: "sightseeing",
         notes:
           "Gratis. Ritmo relajado, sin agenda apretada — dejen que la tarde fluya, tomen café, descansen los pies antes del broche de la noche.",
+        coordinates: { lat: 40.7033, lon: -74.017 },
       },
       {
         time: "18:30",
@@ -332,6 +367,7 @@ export const itinerary: ItineraryDay[] = [
         type: "transport",
         notes:
           "4 Whitehall St. El ferry es gratis y sale cada 20-30 min, no necesitan reserva ni ticket.",
+        coordinates: { lat: 40.7011, lon: -74.013 },
       },
       {
         time: "19:00",
@@ -339,6 +375,7 @@ export const itinerary: ItineraryDay[] = [
         type: "experience",
         notes:
           "Gratis. Este es el paseo en barco 'wow' que buscaban (fusiona lo que pedían en los puntos 13 y 22): a la ida se ve la Estatua de la Libertad de cerca, y en el regreso ya de noche se ven las luces del skyline de Manhattan — el momento más lindo del recorrido. Sentarse del lado derecho a la ida para la mejor vista de la Estatua.",
+        coordinates: { lat: 40.6892, lon: -74.0445 },
       },
       {
         time: "20:30",
@@ -346,6 +383,7 @@ export const itinerary: ItineraryDay[] = [
         type: "food",
         notes:
           "Última noche completa en NYC — elijan algo con calma, sin apuro de horarios.",
+        coordinates: { lat: 40.7075, lon: -74.011 },
       },
     ],
     accommodation: {
@@ -353,6 +391,7 @@ export const itinerary: ItineraryDay[] = [
       area: "Long Island City, Queens",
       price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
+      coordinates: { lat: 40.7475, lon: -73.9335 },
     },
     transportation: {
       local: "Metro 4/5/6, R/W. Ferry a Staten Island gratuito desde Whitehall Terminal.",
@@ -374,12 +413,14 @@ export const itinerary: ItineraryDay[] = [
         type: "transport",
         notes:
           "A esta hora tan temprana, lo más seguro y rápido es taxi/Uber desde el hotel (~15-20 min, no dependan del bus Q70 de madrugada porque la frecuencia es muy baja).",
+        coordinates: { lat: 40.7475, lon: -73.9335 },
       },
       {
         time: "05:15",
         activity: "Check-in aeropuerto (2h antes del vuelo doméstico)",
         type: "transport",
         notes: "Southwest Airlines, vuelo WN1093. Hacer check-in online la noche anterior si es posible.",
+        coordinates: { lat: 40.7769, lon: -73.874 },
       },
       {
         time: "07:15",
@@ -387,6 +428,7 @@ export const itinerary: ItineraryDay[] = [
         type: "transport",
         notes:
           "Boeing 737-800. Salida 7:15 AM, llegada 9:55 AM a Houston Hobby (HOU). ¡Buen viaje!",
+        coordinates: { lat: 40.7769, lon: -73.874 },
       },
     ],
     accommodation: null,

@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { MapPin, Clock, Home, Train, Lightbulb, CloudSun } from "lucide-react";
+import {
+  MapPin,
+  Map as MapIcon,
+  Clock,
+  Home,
+  Train,
+  Lightbulb,
+  CloudSun,
+} from "lucide-react";
 import type { ItineraryDay } from "../data/itinerary";
 import { useWeather } from "../hooks/useWeather";
 import { getCountryFlag } from "../utils/countryFlags";
+import { hasMapPoints } from "../utils/mapPoints";
+import DayMapModal from "./DayMapModal";
 
 interface CalendarProps {
   itinerary: ItineraryDay[];
@@ -20,6 +30,7 @@ const Calendar: React.FC<CalendarProps> = ({
   const { getItineraryWithWeather, loading, error, weatherData } =
     useWeather(itinerary);
   const itineraryWithWeather = getItineraryWithWeather();
+  const [mapDay, setMapDay] = useState<ItineraryDay | null>(null);
 
   if (itineraryWithWeather.length === 0) {
     return (
@@ -150,13 +161,33 @@ const Calendar: React.FC<CalendarProps> = ({
                 {day.description}
               </p>
 
-              <div
-                className={`flex items-center gap-1 text-xs font-semibold ${
-                  selectedDay === day.day ? "text-white/90" : "text-green-600"
-                }`}
-              >
-                <span>💰</span>
-                <span>{day.budget || `€${day.baseBudget}`}</span>
+              <div className="flex items-center justify-between gap-2">
+                <div
+                  className={`flex items-center gap-1 text-xs font-semibold ${
+                    selectedDay === day.day ? "text-white/90" : "text-green-600"
+                  }`}
+                >
+                  <span>💰</span>
+                  <span>{day.budget ?? day.baseBudget}</span>
+                </div>
+
+                {hasMapPoints(day) && (
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setMapDay(day);
+                    }}
+                    className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-300 ${
+                      selectedDay === day.day
+                        ? "bg-white/20 text-white hover:bg-white/30"
+                        : "bg-blue-500/10 text-blue-700 hover:bg-blue-500/20"
+                    }`}
+                  >
+                    <MapIcon size={12} />
+                    Day Map
+                  </button>
+                )}
               </div>
             </div>
 
@@ -301,6 +332,10 @@ const Calendar: React.FC<CalendarProps> = ({
           </div>
         ))}
       </div>
+
+      {mapDay && (
+        <DayMapModal day={mapDay} onClose={() => setMapDay(null)} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,10 @@
 import type { HourlyWeatherData } from "~/services/weatherService";
 
+export interface Coordinates {
+  lat: number;
+  lon: number;
+}
+
 export interface Activity {
   time: string;
   activity: string;
@@ -16,6 +21,7 @@ export interface Activity {
     | "arrival"
     | "experience";
   notes: string;
+  coordinates?: Coordinates;
   weather?: {
     temperatureMin: number;
     temperatureMax: number;
@@ -36,6 +42,7 @@ export interface Accommodation {
   price: string;
   notes?: string;
   address?: string;
+  coordinates?: Coordinates;
 }
 
 export interface Transportation {
