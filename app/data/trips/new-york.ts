@@ -76,7 +76,7 @@ export const itinerary: ItineraryDay[] = [
     accommodation: {
       name: "LIC Manhattan View Hotel",
       area: "Long Island City, Queens",
-      price: "Ya reservado",
+      price: "$1,142.64 total (4 noches, ya pagado)",
       notes:
         "3 estaciones de metro cerca (7, E, M, G). 15 min en tren directo a Midtown.",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
@@ -98,28 +98,34 @@ export const itinerary: ItineraryDay[] = [
       "Apartamentos icónicos de series, Washington Square Park, cruce del puente de Brooklyn y atardecer en DUMBO",
     activities: [
       {
-        time: "09:00",
-        activity: "Desayuno tipo bagel en West Village",
+        time: "08:00",
+        activity: "Desayuno en el hotel",
         type: "food",
-        notes:
-          "Apollo Bagels (73 Greenwich Ave) o Sofia's Bagels (535 Hudson St). Bagels frescos desde $6-8, ideal y económico.",
+        notes: "Desayuno incluido en LIC Manhattan View Hotel antes de salir.",
       },
       {
-        time: "10:00",
+        time: "08:45",
+        activity: "Metro hacia West Village",
+        type: "transport",
+        notes:
+          "Tren 7 desde Court Sq hasta Grand Central, transferir a la línea 4/5/6 hasta 14 St-Union Sq, o directo con la línea E/F según la estación. ~40-45 min con transferencia.",
+      },
+      {
+        time: "09:30",
         activity: "Apartamento de Carrie Bradshaw (Sex and the City)",
         type: "sightseeing",
         notes:
           "66 Perry St, West Village. Es un edificio residencial real — solo foto desde la vereda, con respeto a los vecinos.",
       },
       {
-        time: "10:20",
+        time: "09:50",
         activity: "Apartamento de Friends (exterior)",
         type: "sightseeing",
         notes:
           "90 Bedford St, a 4 min caminando de Perry St. También residencial, solo foto exterior.",
       },
       {
-        time: "10:45",
+        time: "10:15",
         activity: "Washington Square Park",
         type: "sightseeing",
         notes:
@@ -177,14 +183,14 @@ export const itinerary: ItineraryDay[] = [
     accommodation: {
       name: "LIC Manhattan View Hotel",
       area: "Long Island City, Queens",
-      price: "Ya reservado",
+      price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
     },
     transportation: {
       local:
         "Caminando + Metro A/C/E y 4/5/6. Día con mucha caminata plana, zapatos cómodos.",
     },
-    baseBudget: 100,
+    baseBudget: 85,
     tips: "Es el día con más caminata del viaje pero todo es plano y a paso tranquilo. Si se cansan, hay estaciones de metro cerca en cada tramo para saltar una parte. Frente al apartamento de Taylor Swift no se recomienda quedarse mucho tiempo — es su casa real.",
   },
   {
@@ -269,7 +275,7 @@ export const itinerary: ItineraryDay[] = [
     accommodation: {
       name: "LIC Manhattan View Hotel",
       area: "Long Island City, Queens",
-      price: "Ya reservado",
+      price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
     },
     transportation: {
@@ -345,7 +351,7 @@ export const itinerary: ItineraryDay[] = [
     accommodation: {
       name: "LIC Manhattan View Hotel",
       area: "Long Island City, Queens",
-      price: "Ya reservado",
+      price: "$1,142.64 total (4 noches, ya pagado)",
       address: "39-05 29th St, Long Island City, NY 11101, USA",
     },
     transportation: {
@@ -397,7 +403,7 @@ export const tripSummary: TripSummary = {
   totalDays: 5,
   countries: ["Estados Unidos"],
   cities: ["Manhattan", "Brooklyn", "Queens (Long Island City)"],
-  baseTotalBudget: 450,
+  baseTotalBudget: 1592.64,
   timeDistribution: [
     {
       label: "Manhattan",
@@ -428,10 +434,10 @@ export const tripSummary: TripSummary = {
     "LIC → LaGuardia (LGA): taxi/Uber recomendado para el vuelo de salida muy temprano",
   ],
   budgetBreakdown: {
-    accommodation: 0,
+    accommodation: 1142.64,
     localTransport: 40,
     attractions: 110,
-    food: 230,
+    food: 190,
     miscellaneous: 70,
   },
 };
@@ -443,8 +449,9 @@ export const newYorkTrip: Trip = {
   flag: "🇺🇸",
   currency: "$",
   dateRangeLabel: "01 - 05 de Septiembre, 2026",
-  budgetNote: "excluyendo vuelos y hotel (ya reservados)",
+  budgetNote: "incluye el hotel ($1,142.64 ya pagado); excluye vuelos",
   keyTips: [
+    "Desayunos incluidos en el hotel — no hace falta presupuestar ni buscar dónde desayunar cada día",
     "Usar OMNY (tap-to-pay con tarjeta o celular) en el metro — no necesitan MetroCard física",
     "El templo hindú de Robbinsville, NJ se dejó fuera del itinerario: queda muy lejos para moverse solo en metro",
     "El 'Central Perk' real (cafetería en Times Square) y 'The Friends Experience' (museo pago en Flatiron) son dos cosas distintas — el itinerario prioriza la cafetería real, gratis de entrada",
