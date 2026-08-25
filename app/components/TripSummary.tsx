@@ -8,26 +8,62 @@ import {
   Clock,
   Users,
 } from "lucide-react";
-import type { TripSummary } from "../data/itinerary";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import type { ItineraryDay, Trip } from "../data/itinerary";
+import { getCountryFlag } from "../utils/countryFlags";
 
 interface TripSummaryProps {
-  summary: TripSummary;
+  trip: Trip;
   peopleCount: number;
   setPeopleCount: (count: number) => void;
 }
 
+const DEFAULT_BUDGET_LABELS: Record<string, string> = {
+  accommodation: "Alojamiento",
+  localTransport: "Transporte Local",
+  attractions: "Atracciones",
+  food: "Comida",
+  intercityTransport: "Transporte Entre Ciudades",
+  miscellaneous: "Varios",
+};
+
+const deriveDateRange = (itinerary: ItineraryDay[]): string => {
+  if (itinerary.length === 0) {
+    return "Fechas por definir";
+  }
+  const first = format(
+    new Date(itinerary[0].date + "T12:00:00"),
+    "d 'de' MMMM, yyyy",
+    { locale: es }
+  );
+  const last = format(
+    new Date(itinerary[itinerary.length - 1].date + "T12:00:00"),
+    "d 'de' MMMM, yyyy",
+    { locale: es }
+  );
+  return `${first} - ${last}`;
+};
+
 const TripSummaryComponent: React.FC<TripSummaryProps> = ({
-  summary,
+  trip,
   peopleCount,
   setPeopleCount,
 }) => {
+  const { summary } = trip;
+  const dateRangeLabel = trip.dateRangeLabel ?? deriveDateRange(trip.itinerary);
+  const nights = trip.itinerary.filter((day) => day.accommodation).length;
+  const budgetLabels = trip.budgetCategoryLabels ?? DEFAULT_BUDGET_LABELS;
+  const totalBudgetLabel =
+    summary.totalBudget ?? `${trip.currency}${summary.baseTotalBudget}`;
+
   return (
     <div className="w-[350px] bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-lg h-fit sticky top-4">
       <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-        🇪🇺 Viaje a Europa 2025
+        {trip.flag} {trip.title}
       </h2>
       <p className="text-sm text-gray-600 text-center mb-4 font-normal">
-        Tu Perfecta Aventura Europea de 15 Días
+        {trip.subtitle}
       </p>
 
       {/* People Counter */}
@@ -89,7 +125,7 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
             {summary.totalDays}
           </div>
           <div className="text-xs text-gray-600 font-medium mb-1">Días</div>
-          <p className="text-xs text-gray-800">14 - 28 de Septiembre, 2025</p>
+          <p className="text-xs text-gray-800">{dateRangeLabel}</p>
         </div>
 
         <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
@@ -122,14 +158,12 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
           </div>
           <div className="text-xs text-gray-600 font-medium mb-2">Países</div>
           <div className="flex flex-wrap gap-1 mt-2">
-            {summary.countries.map((country, index) => (
+            {summary.countries.map((country) => (
               <span
                 key={country}
                 className="bg-gradient-to-br from-blue-500 to-purple-600 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1"
               >
-                {country === "España" && "🇪🇸"}
-                {country === "Francia" && "🇫🇷"}
-                {country === "Italia" && "🇮🇹"}
+                {getCountryFlag(country)}
                 {country}
               </span>
             ))}
@@ -144,18 +178,12 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
             </h3>
           </div>
           <div className="text-2xl font-bold text-blue-500 leading-none">
-            {summary.totalBudget
-              ? summary.totalBudget.split(" ")[0]
-              : `€${summary.baseTotalBudget}`}
+            {totalBudgetLabel}
           </div>
           <div className="text-xs text-gray-600 font-medium mb-1">
             Presupuesto Total
           </div>
-          <p className="text-xs text-gray-800 mt-1">
-            {summary.totalBudget
-              ? summary.totalBudget.split(" ").slice(1).join(" ")
-              : "(excluyendo vuelos)"}
-          </p>
+          <p className="text-xs text-gray-800 mt-1">{trip.budgetNote ?? ""}</p>
         </div>
 
         <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
@@ -166,42 +194,27 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
             </h3>
           </div>
           <div className="flex flex-col gap-2">
-            <div className="flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br from-orange-100 to-orange-200 text-orange-800">
-              <span className="font-semibold">🇪🇸 España</span>
-              <span className="font-medium">
-                {summary.timeDistribution.spain.days} días
-              </span>
-              <span className="text-xs opacity-80">
-                ({summary.timeDistribution.spain.percentage})
-              </span>
-            </div>
-            <div className="flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br from-blue-100 to-blue-200 text-blue-800">
-              <span className="font-semibold">🇫🇷 Francia</span>
-              <span className="font-medium">
-                {summary.timeDistribution.france.days} días
-              </span>
-              <span className="text-xs opacity-80">
-                ({summary.timeDistribution.france.percentage})
-              </span>
-            </div>
-            <div className="flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br from-green-100 to-green-200 text-green-800">
-              <span className="font-semibold">🇮🇹 Italia</span>
-              <span className="font-medium">
-                {summary.timeDistribution.italy.days} días
-              </span>
-              <span className="text-xs opacity-80">
-                ({summary.timeDistribution.italy.percentage})
-              </span>
-            </div>
-            <div className="flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br from-purple-100 to-purple-200 text-purple-800">
-              <span className="font-semibold">✈️ Viaje</span>
-              <span className="font-medium">
-                {summary.timeDistribution.travel.days} día
-              </span>
-              <span className="text-xs opacity-80">
-                ({summary.timeDistribution.travel.percentage})
-              </span>
-            </div>
+            {summary.timeDistribution.map((entry) => (
+              <div
+                key={entry.label}
+                className={`flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br ${entry.colorClass}`}
+              >
+                <span className="font-semibold">
+                  {entry.emoji} {entry.label}
+                </span>
+                <span className="font-medium">
+                  {entry.days} {entry.days === 1 ? "día" : "días"}
+                </span>
+                <span className="text-xs opacity-80">
+                  ({entry.percentage})
+                </span>
+              </div>
+            ))}
+            {summary.timeDistribution.length === 0 && (
+              <p className="text-xs text-gray-500 italic text-center">
+                Por definir
+              </p>
+            )}
           </div>
         </div>
 
@@ -213,7 +226,7 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
             </h3>
           </div>
           <div className="flex flex-wrap gap-1 mt-2">
-            {summary.cities.map((city, index) => (
+            {summary.cities.map((city) => (
               <span
                 key={city}
                 className="bg-gray-200 text-gray-700 px-2 py-1 rounded-lg text-xs font-medium"
@@ -221,6 +234,9 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
                 {city}
               </span>
             ))}
+            {summary.cities.length === 0 && (
+              <p className="text-xs text-gray-500 italic">Por definir</p>
+            )}
           </div>
         </div>
 
@@ -240,6 +256,9 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
                 <span>{transport}</span>
               </div>
             ))}
+            {summary.keyTransportation.length === 0 && (
+              <p className="text-xs text-gray-500 italic">Por definir</p>
+            )}
           </div>
         </div>
 
@@ -252,30 +271,28 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
           </div>
           <div className="flex flex-col gap-1">
             {Object.entries(summary.budgetBreakdown).map(
-              ([category, amount]) => {
-                const categoryNames: Record<string, string> = {
-                  accommodation: "Alojamiento",
-                  localTransport: "Transporte Local",
-                  attractions: "Atracciones",
-                  food: "Comida",
-                  intercityTransport: "Transporte Entre Ciudades",
-                  miscellaneous: "Varios",
-                };
-                return (
-                  <div
-                    key={category}
-                    className="flex justify-between items-center p-1 px-2 bg-gray-100 rounded-sm text-xs"
-                  >
-                    <span className="text-gray-700 font-medium">
-                      {categoryNames[category]}
-                    </span>
-                    <span className="text-green-600 font-semibold">
-                      €{amount}
-                      {category === "accommodation" ? " (14 noches)" : ""}
-                    </span>
-                  </div>
-                );
-              }
+              ([category, amount]) => (
+                <div
+                  key={category}
+                  className="flex justify-between items-center p-1 px-2 bg-gray-100 rounded-sm text-xs"
+                >
+                  <span className="text-gray-700 font-medium">
+                    {budgetLabels[category] ?? category}
+                  </span>
+                  <span className="text-green-600 font-semibold">
+                    {trip.currency}
+                    {amount}
+                    {category === "accommodation" && nights > 0
+                      ? ` (${nights} noches)`
+                      : ""}
+                  </span>
+                </div>
+              )
+            )}
+            {Object.keys(summary.budgetBreakdown).length === 0 && (
+              <p className="text-xs text-gray-500 italic text-center">
+                Por definir
+              </p>
             )}
           </div>
         </div>
@@ -288,31 +305,17 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
             </h3>
           </div>
           <ul className="m-0 pl-3">
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Reservar las principales atracciones online con anticipación
-              (Sagrada Família, Uffizi, Vaticano, etc.)
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Usar zapatos muy cómodos - muchas caminatas sobre adoquines
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Considerar las necesidades de movilidad - planificar descansos y
-              evitar el exceso de esfuerzo
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Empacar ligero con artículos amigables para mochila
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Obtener pases de transporte en cada ciudad para ahorrar costos
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Probar especialidades locales: churros (Madrid), paella
-              (Barcelona), croissants (París), carbonara (Roma)
-            </li>
-            <li className="mb-1 text-xs text-gray-700 leading-relaxed">
-              Los viajes matutinos maximizan el tiempo de turismo en cada
-              destino
-            </li>
+            {trip.keyTips.map((tip, index) => (
+              <li
+                key={index}
+                className="mb-1 text-xs text-gray-700 leading-relaxed"
+              >
+                {tip}
+              </li>
+            ))}
+            {trip.keyTips.length === 0 && (
+              <li className="text-xs text-gray-500 italic">Por definir</li>
+            )}
           </ul>
         </div>
       </div>

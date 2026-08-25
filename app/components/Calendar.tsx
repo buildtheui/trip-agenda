@@ -4,21 +4,13 @@ import { es } from "date-fns/locale";
 import { MapPin, Clock, Home, Train, Lightbulb, CloudSun } from "lucide-react";
 import type { ItineraryDay } from "../data/itinerary";
 import { useWeather } from "../hooks/useWeather";
+import { getCountryFlag } from "../utils/countryFlags";
 
 interface CalendarProps {
   itinerary: ItineraryDay[];
   selectedDay: number | null;
   setSelectedDay: (day: number | null) => void;
 }
-
-const getCountryFlag = (country: string): string => {
-  const flags: Record<string, string> = {
-    España: "🇪🇸",
-    Francia: "🇫🇷",
-    Italia: "🇮🇹",
-  };
-  return flags[country] || "🌍";
-};
 
 const Calendar: React.FC<CalendarProps> = ({
   itinerary,
@@ -28,6 +20,25 @@ const Calendar: React.FC<CalendarProps> = ({
   const { getItineraryWithWeather, loading, error, weatherData } =
     useWeather(itinerary);
   const itineraryWithWeather = getItineraryWithWeather();
+
+  if (itineraryWithWeather.length === 0) {
+    return (
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg">
+        <h2 className="text-3xl font-semibold text-gray-800 mb-5 text-center">
+          Tu Itinerario Diario
+        </h2>
+        <div className="text-center py-10">
+          <p className="text-2xl mb-2">🗽</p>
+          <p className="text-lg font-semibold text-gray-700 mb-2">
+            Este itinerario aún no tiene días definidos
+          </p>
+          <p className="text-sm text-gray-500">
+            Pronto se agregarán las actividades, alojamientos y transporte.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg">

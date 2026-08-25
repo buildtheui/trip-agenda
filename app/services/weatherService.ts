@@ -75,6 +75,9 @@ const cityCoordinates: Record<string, { lat: number; lon: number }> = {
   Verona: { lat: 45.4384, lon: 10.9916 },
   Venecia: { lat: 45.4408, lon: 12.3155 },
   Venice: { lat: 45.4408, lon: 12.3155 }, // Alternative spelling
+  "Nueva York": { lat: 40.7128, lon: -74.006 },
+  "New York": { lat: 40.7128, lon: -74.006 }, // Alternative spelling
+  NYC: { lat: 40.7128, lon: -74.006 }, // Alternative spelling
 };
 
 export const getWeatherForCity = async (
