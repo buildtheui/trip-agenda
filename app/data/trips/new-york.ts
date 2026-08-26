@@ -388,11 +388,11 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "20:30",
-        activity: "Cena de despedida cerca del Financial District",
+        activity: "Cena de despedida: Abitino's Pizza (Financial District)",
         type: "food",
         notes:
-          "Última noche completa en NYC — elijan algo con calma, sin apuro de horarios.",
-        coordinates: { lat: 40.7075, lon: -74.011 },
+          "32 Broadway, justo al lado del Charging Bull. 4.8★, la opción más cercana a donde terminan la tarde (~0.24 km). Clásica pizza estilo NY, corteza fina y crujiente. Alternativas un poco más lejos si prefieren variar (mismo cluster del almuerzo del día 2, ~20-25 min caminando): Casa 13urger (1 Delancey St, ~2.02 km, $13.50 smash burger), Gotham Burger Social Club (131 Essex St, ~2.42 km, +$13 hamburguesa triple), Katz's Delicatessen (205 E Houston St, ~2.58 km, pastrami sandwich). Última noche completa en NYC — elijan algo con calma, sin apuro de horarios.",
+        coordinates: { lat: 40.7058, lon: -74.0127 },
       },
     ],
     accommodation: {
