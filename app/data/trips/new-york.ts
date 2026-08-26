@@ -74,11 +74,11 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "21:45",
-        activity: "Cena: pizza estilo NY",
+        activity: "Cena: Los Tacos No. 1",
         type: "food",
         notes:
-          "Pop's Pizza (360 W 42nd St) o Joe's Pizza (1435 Broadway) — ambas a pasos de Times Square, slice desde $4-5, muy recomendadas y rápidas.",
-        coordinates: { lat: 40.7547, lon: -73.987 },
+          "229 W 43rd St, a 2 min caminando de Central Perk. Tacos desde $5.95, uno de los puestos de tacos mejor calificados de NYC. Elegir tortilla de maíz o harina, con guacamole/salsa/cebolla.",
+        coordinates: { lat: 40.7573, lon: -73.9877 },
       },
     ],
     accommodation: {
@@ -161,11 +161,11 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "13:15",
-        activity: "Almuerzo en Chinatown",
+        activity: "Almuerzo en Chinatown / Lower East Side",
         type: "food",
         notes:
-          "Tasty Dumpling (42 Mulberry St) o Jin Mei Dumpling (25B Henry St) — dumplings frescos desde $5-15 para los dos. Efectivo recomendado en algunos locales.",
-        coordinates: { lat: 40.7149, lon: -73.9995 },
+          "Zona con varias opciones excelentes a 2-4 cuadras entre sí, elijan según el antojo: Katz's Delicatessen (205 E Houston St, el pastrami sandwich más icónico de NY), Gotham Burger Social Club (131 Essex St, hamburguesa triple +$13), Wah Fung No. 1 (79 Chrystie St, $6.50 roast pork over rice, solo efectivo), Casa 13urger (1 Delancey St, $13.50 smash burger), Lululala (139 Hester St, $7 pollo frito coreano con arroz, solo efectivo), Shu Jiao Fu Zhou (295 Grand St, $3.50 peanut noodles).",
+        coordinates: { lat: 40.7222, lon: -73.9874 },
       },
       {
         time: "14:15",
@@ -254,11 +254,19 @@ export const itinerary: ItineraryDay[] = [
         coordinates: { lat: 40.7794, lon: -73.9632 },
       },
       {
+        time: "11:45",
+        activity: "Snack en The New York Hot Dog King",
+        type: "food",
+        notes:
+          "Está literalmente parado justo frente a las escaleras del MET (5th Ave & 82nd St) — cero desvío. Un clásico hot dog neoyorquino sin moverse del lugar.",
+        coordinates: { lat: 40.7789, lon: -73.9623 },
+      },
+      {
         time: "12:30",
         activity: "Almuerzo económico tipo food cart",
         type: "food",
         notes:
-          "Bajando hacia Midtown: Sharif's Famous (W 31st St & Broadway) o MOE Eats NYC (120 W 49th St) — platos halal desde $10-12, muy recomendados y abundantes.",
+          "Bajando hacia Midtown: Sharif's Famous (W 31st St & Broadway) o MOE Eats NYC (120 W 49th St) — platos halal desde $10-12, muy recomendados y abundantes. Alternativa cerca del Empire State: 7th Street Burger (485 7th Ave), hamburguesa simple $6.99.",
         coordinates: { lat: 40.7477, lon: -73.9884 },
       },
       {
@@ -298,7 +306,7 @@ export const itinerary: ItineraryDay[] = [
         activity: "Cena en McGee's Pub (bar de HIMYM)",
         type: "food",
         notes:
-          "240 W 55th St. El bar real que inspiró MacLaren's en How I Met Your Mother, con memorabilia de la serie en las paredes. Comida de pub, precios razonables ($15-20 por plato).",
+          "240 W 55th St. El bar real que inspiró MacLaren's en How I Met Your Mother, con memorabilia de la serie en las paredes. Comida de pub, precios razonables ($15-20 por plato). Alternativa a 5 cuadras si un día no quieren pub food: Yummy Cheese Pasta (695 9th Ave), pasta desde $9.90, la hacen en una rueda de queso parmesano.",
         coordinates: { lat: 40.765, lon: -73.9829 },
       },
     ],
@@ -342,10 +350,11 @@ export const itinerary: ItineraryDay[] = [
       },
       {
         time: "12:30",
-        activity: "Almuerzo en zona Flatiron/Union Square",
+        activity: "Almuerzo en Union Square",
         type: "food",
-        notes: "Cualquier deli o food hall cercano, opciones desde $10-15 por persona.",
-        coordinates: { lat: 40.7359, lon: -73.9911 },
+        notes:
+          "Smashy Burger (42 Union Sq E) — está literalmente sobre la plaza, smash burgers desde +$5. Alternativa rápida y barata a 3 cuadras: Trader Joe's (675 6th Ave), comida preparada desde +$4, ideal para comer sentados en el parque.",
+        coordinates: { lat: 40.7362, lon: -73.989 },
       },
       {
         time: "14:00",
