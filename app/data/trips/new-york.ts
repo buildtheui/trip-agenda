@@ -195,7 +195,7 @@ export const itinerary: ItineraryDay[] = [
         activity: "Atardecer y cena en Time Out Market (rooftop)",
         type: "food",
         notes:
-          "55 Water St, DUMBO. Terraza en el 5to piso con vista directa al Puente de Brooklyn y skyline de Manhattan — mejor momento para verla es justo antes/durante el atardecer. Food hall con muchas opciones, para todos los gustos y presupuestos.",
+          "55 Water St, DUMBO. Terraza en el 5to piso con vista directa al Puente de Brooklyn y skyline de Manhattan — mejor momento para verla es justo antes/durante el atardecer. Food hall con muchas opciones, para todos los gustos y presupuestos. Alternativas del lado de Manhattan (implican no cruzar a Brooklyn y perderse la vista de la terraza): Casa Adela (66 Loisaida Ave, ~2.3 km, $13.50 medio pollo a la parrilla con arroz y frijoles), Gnocchi on 9th (315 E 9th St, ~2.85 km, $10 gnocchi al vodka con burrata), Pasta de Pasta (165 1st Ave, ~2.9 km, $9.90 pasta).",
         coordinates: { lat: 40.7034, lon: -73.9921 },
       },
     ],
