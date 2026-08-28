@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import {
-  MapPin,
-  Map as MapIcon,
   Clock,
   Home,
-  Train,
+  TrainFront,
   Lightbulb,
-  CloudSun,
   ExternalLink,
+  CloudSun,
+  CalendarOff,
 } from "lucide-react";
 import type { ItineraryDay } from "../data/itinerary";
 import { useWeather } from "../hooks/useWeather";
 import { getCountryFlag } from "../utils/countryFlags";
 import { hasMapPoints } from "../utils/mapPoints";
 import DayMapModal from "./DayMapModal";
+import DayFace from "./DayFace";
 
 interface CalendarProps {
   itinerary: ItineraryDay[];
@@ -23,28 +23,35 @@ interface CalendarProps {
   setSelectedDay: (day: number | null) => void;
 }
 
+const isSameDay = (a: Date, b: Date): boolean =>
+  a.getFullYear() === b.getFullYear() &&
+  a.getMonth() === b.getMonth() &&
+  a.getDate() === b.getDate();
+
+const isToday = (date: string): boolean =>
+  isSameDay(new Date(date + "T12:00:00"), new Date());
+
 const Calendar: React.FC<CalendarProps> = ({
   itinerary,
   selectedDay,
   setSelectedDay,
 }) => {
-  const { getItineraryWithWeather, loading, error, weatherData } =
-    useWeather(itinerary);
+  const { getItineraryWithWeather, loading, error } = useWeather(itinerary);
   const itineraryWithWeather = getItineraryWithWeather();
   const [mapDay, setMapDay] = useState<ItineraryDay | null>(null);
 
+  const switchDay = (day: number, open: boolean) =>
+    setSelectedDay(open ? day : null);
+
   if (itineraryWithWeather.length === 0) {
     return (
-      <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-5 text-center">
-          Tu Itinerario Diario
-        </h2>
-        <div className="text-center py-10">
-          <p className="text-2xl mb-2">🗽</p>
-          <p className="text-lg font-semibold text-gray-700 mb-2">
+      <div className="board-panel">
+        <div className="flex flex-col items-center gap-3 px-6 py-16 text-center">
+          <CalendarOff size={28} className="text-flap/50" aria-hidden="true" />
+          <p className="text-lg font-semibold text-flap">
             Este itinerario aún no tiene días definidos
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="max-w-sm text-sm text-flap/60">
             Pronto se agregarán las actividades, alojamientos y transporte.
           </p>
         </div>
@@ -52,328 +59,261 @@ const Calendar: React.FC<CalendarProps> = ({
     );
   }
 
-  return (
-    <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-5 shadow-lg">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-5 text-center">
-        Tu Itinerario Diario
-      </h2>
+  const today = new Date();
+  const anyFutureDay = itinerary.some(
+    (day) => new Date(day.date + "T12:00:00") >= today
+  );
 
+  return (
+    <div className="board-panel">
       {error && (
-        <div className="text-center py-2 text-amber-600 text-sm">
-          <span>⚠️ No se pudo cargar la información meteorológica</span>
-        </div>
+        <p
+          role="status"
+          className="mb-3 rounded-[3px] border border-black bg-[#241300] px-3 py-2 text-center text-xs font-semibold tracking-[0.08em] text-[#ffb35c]"
+        >
+          ⚠️ NO SE PUDO CARGAR LA INFORMACIÓN METEOROLÓGICA
+        </p>
       )}
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-4 justify-stretch">
-        {itineraryWithWeather.map((day) => (
-          <div
-            key={day.day}
-            className={`
-              min-w-[350px] w-full min-h-[170px] p-4 rounded-xl cursor-pointer 
-              transition-all duration-300 border-2 border-transparent relative overflow-hidden
-              ${
-                selectedDay === day.day
-                  ? "bg-gradient-to-br from-blue-500 to-purple-600 text-white transform -translate-y-1 shadow-xl shadow-blue-500/25 border-blue-500 min-h-auto"
-                  : "bg-gradient-to-br from-gray-50 to-gray-200 hover:transform hover:-translate-y-1 hover:shadow-lg hover:border-blue-400"
-              }
-            `}
-            onClick={() =>
-              setSelectedDay(selectedDay === day.day ? null : day.day)
-            }
-          >
-            <div className="flex justify-between items-center mb-3 flex-wrap gap-2">
-              <div
-                className={`text-sm font-semibold px-2 py-1 rounded-full min-w-[45px] text-center ${
-                  selectedDay === day.day
-                    ? "bg-white/20 backdrop-blur-lg"
-                    : "bg-gradient-to-br from-blue-500 to-purple-600 text-white"
-                }`}
-              >
-                Día {day.day}
-              </div>
-              <div
-                className={`text-xs font-medium ${selectedDay === day.day ? "text-white/90" : "text-gray-600"}`}
-              >
-                {format(new Date(day.date + "T12:00:00"), "EEEE, d MMM", {
-                  locale: es,
-                })}
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="text-base">{getCountryFlag(day.country)}</div>
-                {day.weather ? (
-                  <div className="flex items-center gap-2 text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-3 py-2 rounded-full backdrop-blur-sm border border-white/30">
-                    <span className="text-xl">{day.weather.icon}</span>
-                    <div className="flex items-center gap-1">
-                      <span
-                        className={`font-bold text-sm ${selectedDay === day.day ? "text-white" : "text-blue-700"}`}
-                      >
-                        {day.weather.temperatureMax}°
-                      </span>
-                      <span
-                        className={`text-xs ${selectedDay === day.day ? "text-white/60" : "text-gray-500"}`}
-                      >
-                        /
-                      </span>
-                      <span
-                        className={`font-medium text-sm ${selectedDay === day.day ? "text-white/90" : "text-blue-600"}`}
-                      >
-                        {day.weather.temperatureMin}°
-                      </span>
+      <div className="flex flex-col gap-[6px]">
+        {itineraryWithWeather.map((day) => {
+          const isOpen = selectedDay === day.day;
+          const past = new Date(day.date + "T12:00:00") < new Date();
+          const detailId = `day-detail-${day.day}`;
+          return (
+            <div
+              key={day.day}
+              className={`day-rail ${isOpen ? "is-open" : ""}`}
+            >
+              <DayFace
+                dayNumber={day.day}
+                dateText={format(
+                  new Date(day.date + "T12:00:00"),
+                  "dd MMM",
+                  { locale: es }
+                ).toUpperCase()}
+                city={day.city}
+                country={day.country}
+                flag={getCountryFlag(day.country)}
+                weather={day.weather}
+                weatherLoading={loading && !day.weather}
+                budget={day.budget ?? `€${day.baseBudget}`}
+                isOpen={isOpen}
+                isPast={past && anyFutureDay && !isToday(day.date)}
+                accent={isToday(day.date)}
+                onToggle={() => switchDay(day.day, !isOpen)}
+                onKeyNav={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    switchDay(day.day, !isOpen);
+                  }
+                  if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    switchDay(day.day, true);
+                  }
+                }}
+                onMap={
+                  hasMapPoints(day)
+                    ? (e) => {
+                        e.stopPropagation();
+                        setMapDay(day);
+                      }
+                    : undefined
+                }
+                mapLabel={`Ver mapa del día ${day.day}`}
+              />
+
+              <div id={detailId} className="sheet-wrap">
+                <div className="sheet-clip">
+                  <div className="sheet">
+                    <div className="sheet-inner">
+                      <DayDetail day={day} />
                     </div>
                   </div>
-                ) : (
-                  <div className="flex items-center gap-2 text-sm bg-gray-200/50 px-3 py-2 rounded-full backdrop-blur-sm border border-gray-300/30 animate-pulse">
-                    <div className="w-5 h-5 bg-gray-300/60 rounded-full"></div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-6 h-3 bg-gray-300/60 rounded"></div>
-                      <span className="text-xs text-gray-400">/</span>
-                      <div className="w-6 h-3 bg-gray-300/60 rounded"></div>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
-
-            <div>
-              <h3
-                className={`text-base font-semibold mb-1 leading-tight ${
-                  selectedDay === day.day ? "text-white" : "text-gray-800"
-                }`}
-              >
-                {day.title}
-              </h3>
-
-              <div
-                className={`flex items-center gap-1 mb-1 text-xs ${
-                  selectedDay === day.day ? "text-white/90" : "text-gray-600"
-                }`}
-              >
-                <MapPin size={12} />
-                <span>
-                  {day.city}, {day.country}
-                </span>
-              </div>
-
-              <p
-                className={`text-xs mb-2 leading-relaxed ${
-                  selectedDay === day.day ? "text-white/80" : "text-gray-600"
-                }`}
-              >
-                {day.description}
-              </p>
-
-              <div className="flex items-center justify-between gap-2">
-                <div
-                  className={`flex items-center gap-1 text-xs font-semibold ${
-                    selectedDay === day.day ? "text-white/90" : "text-green-600"
-                  }`}
-                >
-                  <span>💰</span>
-                  <span>{day.budget ?? day.baseBudget}</span>
-                </div>
-
-                {hasMapPoints(day) && (
-                  <button
-                    type="button"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      setMapDay(day);
-                    }}
-                    className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-300 ${
-                      selectedDay === day.day
-                        ? "bg-white/20 text-white hover:bg-white/30"
-                        : "bg-blue-500/10 text-blue-700 hover:bg-blue-500/20"
-                    }`}
-                  >
-                    <MapIcon size={12} />
-                    Day Map
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {selectedDay === day.day && (
-              <div className="mt-4 pt-4 border-t-2 border-white/20 backdrop-blur-lg">
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
-                    <Clock size={16} />
-                    Actividades
-                  </h4>
-                  {day.activities.map((activity, index) => {
-                    const mapsUrl = activity.coordinates
-                      ? `https://www.google.com/maps/search/?api=1&query=${activity.coordinates.lat},${activity.coordinates.lon}`
-                      : null;
-                    const blockClass =
-                      "flex gap-3 mb-3 p-2 items-center bg-white/10 rounded-lg backdrop-blur-lg";
-                    return mapsUrl ? (
-                      <a
-                        key={index}
-                        href={mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Abrir en Google Maps"
-                        onClick={(event) => event.stopPropagation()}
-                        className={`${blockClass} group transition-colors hover:bg-white/20`}
-                      >
-                        <div className="flex flex-col gap-1 items-center">
-                          <p>{activity.blockIcon?.weatherIcon}</p>
-                          <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
-                            <Clock size={10} />
-                            {activity.time}
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-white/95 text-xs">
-                              {activity.activity}
-                            </span>
-                          </div>
-                          <p className="text-xs text-white/80 m-0 leading-tight">
-                            {activity.notes}
-                          </p>
-                        </div>
-                        <ExternalLink
-                          size={12}
-                          className="shrink-0 text-white/40 transition-colors group-hover:text-white"
-                        />
-                      </a>
-                    ) : (
-                      <div key={index} className={blockClass}>
-                        <div className="flex flex-col gap-1 items-center">
-                          <p>{activity.blockIcon?.weatherIcon}</p>
-                          <div className="flex items-center gap-1 text-xs font-semibold text-white/80 min-w-[50px]">
-                            <Clock size={10} />
-                            {activity.time}
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-white/95 text-xs">
-                              {activity.activity}
-                            </span>
-                          </div>
-                          <p className="text-xs text-white/80 m-0 leading-tight">
-                            {activity.notes}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {day.weather && (
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
-                      <CloudSun size={16} />
-                      Clima del Día
-                    </h4>
-                    <div className="flex gap-2 items-start p-3 bg-white/10 rounded-lg backdrop-blur-lg">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{day.weather.icon}</span>
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-white/90 text-sm font-medium">
-                              Máxima:
-                            </span>
-                            <span className="text-white font-bold text-lg">
-                              {day.weather.temperatureMax}°C
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-white/90 text-sm font-medium">
-                              Mínima:
-                            </span>
-                            <span className="text-white/80 font-semibold">
-                              {day.weather.temperatureMin}°C
-                            </span>
-                          </div>
-                          <p className="text-xs text-white/70 italic">
-                            {day.weather.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
-                    <Home size={16} />
-                    Alojamiento
-                  </h4>
-                  {day.accommodation ? (
-                    <div className="flex gap-2 items-start p-2 bg-white/10 rounded-lg backdrop-blur-lg">
-                      <div className="flex-1">
-                        <strong className="text-white/95 text-xs">
-                          {day.accommodation.name}
-                        </strong>
-                        <p className="my-1 text-xs text-white/80">
-                          <strong>Área:</strong> {day.accommodation.area}
-                        </p>
-                        <p className="my-1 text-xs text-white/80">
-                          <strong>Precio:</strong> {day.accommodation.price}
-                        </p>
-                        {day.accommodation.notes && (
-                          <p className="my-1 text-xs text-white/80">
-                            {day.accommodation.notes}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="p-2 bg-white/10 rounded-lg backdrop-blur-lg">
-                      <p className="text-xs text-white/80">
-                        No hay alojamiento programado para este día
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold mb-3 text-white/95 flex items-center gap-2">
-                    <Train size={16} />
-                    Transporte
-                  </h4>
-                  <div className="flex gap-2 items-start p-2 bg-white/10 rounded-lg backdrop-blur-lg">
-                    <div className="flex-1">
-                      {day.transportation.airport && (
-                        <p className="my-1 text-xs text-white/80">
-                          <strong>Aeropuerto:</strong>{" "}
-                          {day.transportation.airport}
-                        </p>
-                      )}
-                      <p className="my-1 text-xs text-white/80">
-                        <strong>Local:</strong> {day.transportation.local}
-                      </p>
-                      {day.transportation.intercity && (
-                        <p className="my-1 text-xs text-white/80">
-                          <strong>Entre ciudades:</strong>{" "}
-                          {day.transportation.intercity}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white/10 p-3 rounded-lg backdrop-blur-lg">
-                  <h4 className="text-sm font-semibold mb-2 text-white/95 flex items-center gap-2">
-                    <Lightbulb size={16} />
-                    Consejos
-                  </h4>
-                  <p className="m-0 text-xs text-white/90 leading-relaxed italic">
-                    {day.tips}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {mapDay && (
         <DayMapModal day={mapDay} onClose={() => setMapDay(null)} />
       )}
     </div>
+  );
+};
+
+const SectionLabel: React.FC<{ icon: React.ReactNode; children: React.ReactNode }> = ({
+  icon,
+  children,
+}) => (
+  <h3 className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-2">
+    {icon}
+    {children}
+  </h3>
+);
+
+const DayDetail: React.FC<{ day: ItineraryDay }> = ({ day }) => {
+  return (
+    <>
+      <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-b pb-3" style={{ borderColor: "var(--color-rule)" }}>
+        <span className="flap-cell flap-cell--lit px-2 text-[11px] font-bold tracking-[0.12em]" aria-hidden="true">
+          DÍA {String(day.day).padStart(2, "0")}
+        </span>
+        <h2 className="text-xl font-bold leading-tight text-ink">
+          {day.title}
+        </h2>
+        <span className="w-full text-sm font-medium text-ink-2 sm:w-auto">
+          {day.city}, {day.country} ·{" "}
+          {format(new Date(day.date + "T12:00:00"), "EEEE, d 'de' MMMM", {
+            locale: es,
+          })}
+        </span>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <div>
+          <SectionLabel icon={<Clock size={12} className="text-accent" aria-hidden="true" />}>
+            Actividades
+          </SectionLabel>
+          <div className="flex flex-col gap-2.5">
+            {day.activities.map((activity, index) => {
+              const mapsUrl = activity.coordinates
+                ? `https://www.google.com/maps/search/?api=1&query=${activity.coordinates.lat},${activity.coordinates.lon}`
+                : null;
+              const inner = (
+                <>
+                  <span className="time-chip">{activity.time}</span>
+                  {activity.blockIcon?.weatherIcon && (
+                    <span className="text-[15px] leading-none" aria-hidden="true">
+                      {activity.blockIcon.weatherIcon}
+                    </span>
+                  )}
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[13px] font-semibold leading-tight text-ink">
+                      {activity.activity}
+                    </span>
+                    <span className="mt-0.5 block text-xs leading-snug text-ink-2">
+                      {activity.notes}
+                    </span>
+                  </span>
+                  {mapsUrl && (
+                    <ExternalLink
+                      size={13}
+                      className="shrink-0 text-ink-2 transition-colors group-hover:text-accent"
+                      aria-hidden="true"
+                    />
+                  )}
+                </>
+              );
+              const cls =
+                "group flex items-start gap-3 rounded-md border px-3 py-2 transition-colors";
+              return mapsUrl ? (
+                <a
+                  key={index}
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Abrir en Google Maps"
+                  className={`${cls} border-black/10 bg-[#efe8d6] hover:border-accent hover:bg-white`}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div key={index} className={`${cls} border-black/10 bg-[#efe8d6]`}>
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          {day.weather && (
+            <div>
+              <SectionLabel icon={<CloudSun size={13} className="text-accent" aria-hidden="true" />}>
+                Clima del día
+              </SectionLabel>
+              <div className="flex items-center gap-3">
+                <span className="text-[26px]" aria-hidden="true">
+                  {day.weather.icon}
+                </span>
+                <div className="text-sm">
+                  <span className="font-bold text-ink">
+                    {day.weather.temperatureMax}°
+                  </span>
+                  <span className="mx-1 text-ink-2">/</span>
+                  <span className="font-medium text-ink">{day.weather.temperatureMin}°</span>
+                  <span className="ml-2 text-xs italic text-ink-2">
+                    {day.weather.description}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {day.accommodation && (
+            <div>
+              <SectionLabel icon={<Home size={12} className="text-accent" aria-hidden="true" />}>
+                Alojamiento
+              </SectionLabel>
+              <div className="rounded-md border border-black/10 bg-[#efe8d6] px-3 py-2 text-sm">
+                <p className="font-bold text-ink">{day.accommodation.name}</p>
+                {day.accommodation.area && (
+                  <p className="mt-0.5 text-xs font-medium text-ink-2">
+                    Área: {day.accommodation.area}
+                  </p>
+                )}
+                {day.accommodation.price && (
+                  <p className="mt-0.5 text-xs text-ink-2">
+                    Precio: <span className="font-bold text-ink">{day.accommodation.price}</span>
+                  </p>
+                )}
+                {day.accommodation.notes && (
+                  <p className="mt-1 text-xs leading-snug text-ink-2">
+                    {day.accommodation.notes}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+
+          <div>
+            <SectionLabel icon={<TrainFront size={13} className="text-accent" aria-hidden="true" />}>
+              Transporte
+            </SectionLabel>
+            <div className="rounded-md border border-black/10 bg-[#efe8d6] px-3 py-2 text-xs leading-relaxed text-ink-2">
+              {day.transportation.airport && (
+                <p>
+                  <span className="font-semibold text-ink">Aeropuerto:</span>{" "}
+                  {day.transportation.airport}
+                </p>
+              )}
+              {day.transportation.local && (
+                <p>
+                  <span className="font-semibold text-ink">Local:</span>{" "}
+                  {day.transportation.local}
+                </p>
+              )}
+              {day.transportation.intercity && (
+                <p>
+                  <span className="font-semibold text-ink">Entre ciudades:</span>{" "}
+                  {day.transportation.intercity}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <SectionLabel icon={<Lightbulb size={13} className="text-accent" aria-hidden="true" />}>
+              Consejos
+            </SectionLabel>
+            <p className="text-sm italic leading-relaxed text-ink-2">{day.tips}</p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

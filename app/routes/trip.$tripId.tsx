@@ -25,11 +25,11 @@ export default function TripPage() {
 
   if (!trip) {
     return (
-      <div className="min-h-screen p-4 flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold text-gray-800">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 p-4">
+        <h1 className="text-2xl font-bold text-ink">
           Itinerario no encontrado
         </h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-ink-2">
           El itinerario que buscas no existe.
         </p>
         <TripSelector />
@@ -67,23 +67,25 @@ export default function TripPage() {
   };
 
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen">
       <TripSelector />
-      <main className="grid grid-cols-1 xl:grid-cols-[1fr_350px] gap-5 w-full mx-0 px-2">
-        <div className="w-full min-w-0">
-          <Calendar
-            itinerary={updatedItinerary}
-            selectedDay={selectedDay}
-            setSelectedDay={setSelectedDay}
-          />
-        </div>
+      <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6">
+        <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[minmax(0,1fr)_330px]">
+          <div className="min-w-0">
+            <Calendar
+              itinerary={updatedItinerary}
+              selectedDay={selectedDay}
+              setSelectedDay={setSelectedDay}
+            />
+          </div>
 
-        <div className="w-[350px] min-w-[350px] xl:w-[350px] max-xl:max-w-[350px] max-xl:mx-auto max-xl:static">
-          <TripSummary
-            trip={updatedTrip}
-            peopleCount={peopleCount}
-            setPeopleCount={setPeopleCount}
-          />
+          <div className="min-w-0 xl:sticky xl:top-6">
+            <TripSummary
+              trip={updatedTrip}
+              peopleCount={peopleCount}
+              setPeopleCount={setPeopleCount}
+            />
+          </div>
         </div>
       </main>
     </div>

@@ -19,13 +19,23 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap",
   },
 ];
 
+const DIRECTION_CONTRACT = `
+DIRECTION CONTRACT — Split-Flap Departures (seed be4f4c74)
+THESIS: The itinerary reads as a station departure board: days are rows of cream flap cells over matte black, and the trip's numbers live on warm paper beside it. It refuses the purple-gradient card grid AI travel apps ship.
+OWN-WORLD: warm paper #F0E9D9 with hairline rules; matte-black station band #0D0C0B; cream flap cells #F3EDDF with dark gaps; white destination plates; red LED clock #E5382E; one terracotta tag #C0562F for the selected day, the total, and the primary action. Archivo grotesque with tabular numerals across the board.
+STORY: The traveler scans days like departures — day, date, city, weather, budget — taps one, its row flips open onto a paper detail sheet.
+FIRST VIEWPORT: black band across the top: trip plate + LED clock; the day board below: rows of flap cells; paper ledger pinned right with the total in terracotta.
+FORM: split-flap departure board. Position 1 of grounded candidates. Seed be4f4c74.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->`;
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,6 +43,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <div
+          aria-hidden="true"
+          hidden
+          dangerouslySetInnerHTML={{ __html: `<!--${DIRECTION_CONTRACT}` }}
+        />
         {children}
         <ScrollRestoration />
         <Scripts />

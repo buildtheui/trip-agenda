@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown, Plane } from "lucide-react";
 import { getTripById, trips } from "../data/trips";
 
 const TripSelector: React.FC = () => {
@@ -33,35 +33,34 @@ const TripSelector: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative mb-5 flex justify-center pt-3">
-      <button
-        type="button"
-        onClick={() => setOpen((prev) => !prev)}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        aria-label="Seleccionar itinerario"
-        className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-800 shadow-lg shadow-purple-950/20 ring-1 ring-black/5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
-      >
-        {currentTrip ? (
-          <>
-            <span className="text-base leading-none">{currentTrip.flag}</span>
-            <span>{currentTrip.title}</span>
-          </>
-        ) : (
-          <span>Seleccionar itinerario</span>
-        )}
-        <ChevronDown
-          size={16}
-          className={`text-gray-500 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-      </button>
+    <div ref={containerRef} className="band relative">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 py-3 sm:px-6">
+        <button
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-label="Seleccionar itinerario"
+          className="plate"
+        >
+          <span className="flex h-7 w-7 items-center justify-center rounded-[3px] bg-board text-flap shadow-[inset_0_1px_0_rgba(243,237,223,0.08),inset_0_-2px_2px_rgba(0,0,0,0.45)]">
+            <Plane size={13} aria-hidden="true" />
+          </span>
+          <span className="text-sm font-bold uppercase tracking-[0.04em]">
+            {currentTrip ? currentTrip.title : "Seleccionar itinerario"}
+          </span>
+          <ChevronDown
+            size={16}
+            className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
 
       {open && (
         <div
           role="listbox"
-          className="absolute top-full left-1/2 z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] -translate-x-1/2 overflow-hidden rounded-xl bg-white py-1 shadow-xl shadow-purple-950/25 ring-1 ring-black/10"
+          className="absolute left-1/2 top-full z-50 w-72 max-w-[calc(100vw-2rem)] -translate-x-1/2 overflow-hidden rounded-bl-xl rounded-br-xl border border-t-0 border-black bg-board py-2 shadow-[0_28px_60px_-18px_rgba(0,0,0,0.65)]"
         >
           {trips.map((trip) => {
             const active = trip.id === tripId;
@@ -72,15 +71,37 @@ const TripSelector: React.FC = () => {
                 role="option"
                 aria-selected={active}
                 onClick={() => setOpen(false)}
-                className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors ${
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setOpen(false);
+                }}
+                className={`flex items-center gap-3 px-4 py-2.5 transition-colors ${
                   active
-                    ? "bg-gray-100 font-semibold text-gray-900"
-                    : "text-gray-800 hover:bg-purple-50"
+                    ? "bg-[#faf8f1] text-ink"
+                    : "text-flap hover:bg-white/5"
                 }`}
               >
                 <span className="text-base leading-none">{trip.flag}</span>
-                <span className="flex-1 truncate">{trip.title}</span>
-                {active && <Check size={16} className="text-gray-600" />}
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold leading-tight">
+                    {trip.title}
+                  </span>
+                  {trip.dateRangeLabel && (
+                    <span
+                      className={`block text-[11px] leading-tight ${
+                        active ? "text-ink/60" : "text-flap/50"
+                      }`}
+                    >
+                      {trip.dateRangeLabel}
+                    </span>
+                  )}
+                </span>
+                <span
+                  className={`text-[10px] font-bold tracking-[0.12em] ${
+                    active ? "text-ink/50" : "text-flap/40"
+                  }`}
+                >
+                  {trip.summary.totalDays} DÍAS
+                </span>
               </Link>
             );
           })}

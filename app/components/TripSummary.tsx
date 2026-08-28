@@ -1,12 +1,12 @@
 import React from "react";
 import {
   MapPin,
-  Calendar,
-  DollarSign,
-  Train,
-  PieChart,
-  Clock,
+  CalendarRange,
+  Wallet,
+  TrainFront,
   Users,
+  Sparkles,
+  Clock,
 } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -21,17 +21,15 @@ interface TripSummaryProps {
 
 const DEFAULT_BUDGET_LABELS: Record<string, string> = {
   accommodation: "Alojamiento",
-  localTransport: "Transporte Local",
+  localTransport: "Transporte local",
   attractions: "Atracciones",
   food: "Comida",
-  intercityTransport: "Transporte Entre Ciudades",
+  intercityTransport: "Transporte entre ciudades",
   miscellaneous: "Varios",
 };
 
 const deriveDateRange = (itinerary: ItineraryDay[]): string => {
-  if (itinerary.length === 0) {
-    return "Fechas por definir";
-  }
+  if (itinerary.length === 0) return "Fechas por definir";
   const first = format(
     new Date(itinerary[0].date + "T12:00:00"),
     "d 'de' MMMM, yyyy",
@@ -42,8 +40,22 @@ const deriveDateRange = (itinerary: ItineraryDay[]): string => {
     "d 'de' MMMM, yyyy",
     { locale: es }
   );
-  return `${first} - ${last}`;
+  return `${first} — ${last}`;
 };
+
+const StatRow: React.FC<{
+  icon: React.ReactNode;
+  label: string;
+  children: React.ReactNode;
+}> = ({ icon, label, children }) => (
+  <section className="px-1 py-3">
+    <div className="mb-2 flex items-center gap-2">
+      {icon}
+      <h3 className="label">{label}</h3>
+    </div>
+    {children}
+  </section>
+);
 
 const TripSummaryComponent: React.FC<TripSummaryProps> = ({
   trip,
@@ -56,33 +68,35 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
   const budgetLabels = trip.budgetCategoryLabels ?? DEFAULT_BUDGET_LABELS;
   const totalBudgetLabel =
     summary.totalBudget ?? `${trip.currency}${summary.baseTotalBudget}`;
+  const budgetRows = Object.entries(summary.budgetBreakdown).filter(
+    ([, value]) => value !== 0
+  );
 
   return (
-    <div className="w-[350px] bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-lg h-fit sticky top-4">
-      <h2 className="text-2xl font-bold text-gray-800 mb-2 text-center bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-        {trip.flag} {trip.title}
-      </h2>
-      <p className="text-sm text-gray-600 text-center mb-4 font-normal">
-        {trip.subtitle}
-      </p>
+    <section className="rounded-lg border bg-sheet text-ink shadow-[0_18px_44px_-24px_rgba(38,30,16,0.55)]">
+      {/* Trip identity */}
+      <header className="border-b px-5 pb-3 pt-4">
+        <h2 className="text-xl font-bold leading-tight tracking-[-0.01em]">
+          {trip.flag} {trip.title}
+        </h2>
+        <p className="mt-1 text-sm text-ink-2">{trip.subtitle}</p>
+        <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-2">
+          <span className="time-chip">{dateRangeLabel}</span>
+        </div>
+      </header>
 
-      {/* People Counter */}
-      <div className="mb-4 p-3 bg-white/80 rounded-xl backdrop-blur-sm">
-        <div className="flex items-center justify-center gap-2 mb-2 flex-wrap">
-          <Users size={18} className="text-blue-500" />
-          <label
-            htmlFor="people-count"
-            className="font-semibold text-gray-800 text-sm"
-          >
-            Número de Viajeros:
-          </label>
-          <div className="flex items-center gap-2">
+      <div className="divide-y px-4">
+        {/* Travelers counter */}
+        <StatRow icon={<Users size={14} className="text-accent" aria-hidden="true" />} label="Viajeros">
+          <div className="flex items-center justify-center gap-2">
             <button
+              type="button"
+              aria-label="Restar un viajero"
               onClick={() => setPeopleCount(Math.max(1, peopleCount - 1))}
-              className="bg-gradient-to-br from-blue-500 to-purple-600 text-white border-none rounded-md w-7 h-7 text-sm font-semibold cursor-pointer transition-all duration-300 flex items-center justify-center hover:-translate-y-0.5 hover:shadow-md hover:shadow-blue-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={peopleCount <= 1}
+              className="h-8 w-8 rounded-md border border-rule-deep bg-[#efe8d6] text-base font-bold text-ink transition-colors hover:border-accent hover:bg-white disabled:cursor-not-allowed disabled:opacity-40"
             >
-              -
+              −
             </button>
             <input
               id="people-count"
@@ -93,233 +107,201 @@ const TripSummaryComponent: React.FC<TripSummaryProps> = ({
               onChange={(e) =>
                 setPeopleCount(Math.max(1, parseInt(e.target.value) || 1))
               }
-              className="w-11 h-7 text-center border-2 border-gray-200 rounded-md text-sm font-semibold text-gray-800 transition-all duration-300 focus:outline-none focus:border-blue-500 focus:shadow-[0_0_0_2px_rgba(102,126,234,0.1)]"
+              className="num h-10 w-14 rounded-md border border-rule-deep bg-white text-center text-lg font-bold text-ink"
+              style={{ caretColor: "var(--color-accent)" }}
             />
             <button
+              type="button"
+              aria-label="Sumar un viajero"
               onClick={() => setPeopleCount(Math.min(10, peopleCount + 1))}
-              className="bg-gradient-to-br from-blue-500 to-purple-600 text-white border-none rounded-md w-7 h-7 text-sm font-semibold cursor-pointer transition-all duration-300 flex items-center justify-center hover:-translate-y-0.5 hover:shadow-md hover:shadow-blue-500/30"
+              className="h-8 w-8 rounded-md border border-rule-deep bg-[#efe8d6] text-base font-bold text-ink transition-colors hover:border-accent hover:bg-white"
             >
               +
             </button>
           </div>
-        </div>
-        <p className="text-xs text-gray-600 m-0 italic text-center">
-          Los presupuestos se calculan automáticamente para {peopleCount}{" "}
-          {peopleCount === 1 ? "persona" : "personas"}
-        </p>
-      </div>
+          <label
+            htmlFor="people-count"
+            className="mt-1.5 block text-center text-[11px] italic text-ink-2"
+          >
+            Presupuestos calculados para {peopleCount}{" "}
+            {peopleCount === 1 ? "persona" : "personas"}
+          </label>
+        </StatRow>
 
-      <h3 className="text-xl font-semibold text-gray-800 mb-3 text-center">
-        Resumen del Viaje
-      </h3>
+        {/* Duration */}
+        <StatRow
+          icon={<CalendarRange size={14} className="text-accent" aria-hidden="true" />}
+          label="Duración"
+        >
+          <div className="flex items-baseline justify-between">
+            <p className="num text-4xl font-bold leading-none">{summary.totalDays}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-2">
+              días
+            </p>
+          </div>
+          <div className="leader mt-2 text-sm">
+            <span>{dateRangeLabel}</span>
+            <span className="fill" aria-hidden="true"></span>
+            <span className="font-medium text-ink-2">
+              {nights} {nights === 1 ? "noche" : "noches"}
+            </span>
+          </div>
+        </StatRow>
 
-      <div className="flex flex-col gap-3">
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <Calendar size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Duración
-            </h3>
-          </div>
-          <div className="text-2xl font-bold text-blue-500 leading-none">
-            {summary.totalDays}
-          </div>
-          <div className="text-xs text-gray-600 font-medium mb-1">Días</div>
-          <p className="text-xs text-gray-800">{dateRangeLabel}</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <Users size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Viajeros
-            </h3>
-          </div>
-          <div className="text-2xl font-bold text-blue-500 leading-none">
-            {peopleCount}
-          </div>
-          <div className="text-xs text-gray-600 font-medium mb-1">
-            {peopleCount === 1 ? "Persona" : "Personas"}
-          </div>
-          <p className="text-xs text-gray-800">
-            Presupuestos calculados para {peopleCount}
-          </p>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <MapPin size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Destinos
-            </h3>
-          </div>
-          <div className="text-2xl font-bold text-blue-500 leading-none">
-            {summary.countries.length}
-          </div>
-          <div className="text-xs text-gray-600 font-medium mb-2">Países</div>
-          <div className="flex flex-wrap gap-1 mt-2">
-            {summary.countries.map((country) => (
-              <span
-                key={country}
-                className="bg-gradient-to-br from-blue-500 to-purple-600 text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1"
-              >
-                {getCountryFlag(country)}
-                {country}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <DollarSign size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Presupuesto
-            </h3>
-          </div>
-          <div className="text-2xl font-bold text-blue-500 leading-none">
+        {/* Budget */}
+        <StatRow
+          icon={<Wallet size={14} className="text-accent" aria-hidden="true" />}
+          label="Presupuesto"
+        >
+          <p className="num text-4xl font-bold leading-none text-accent-deep">
             {totalBudgetLabel}
-          </div>
-          <div className="text-xs text-gray-600 font-medium mb-1">
-            Presupuesto Total
-          </div>
-          <p className="text-xs text-gray-800 mt-1">{trip.budgetNote ?? ""}</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <PieChart size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Distribución del Tiempo
-            </h3>
-          </div>
-          <div className="flex flex-col gap-2">
-            {summary.timeDistribution.map((entry) => (
-              <div
-                key={entry.label}
-                className={`flex justify-between items-center p-2 rounded-md text-xs bg-gradient-to-br ${entry.colorClass}`}
-              >
-                <span className="font-semibold">
-                  {entry.emoji} {entry.label}
-                </span>
-                <span className="font-medium">
-                  {entry.days} {entry.days === 1 ? "día" : "días"}
-                </span>
-                <span className="text-xs opacity-80">
-                  ({entry.percentage})
+          </p>
+          <p className="mt-1.5 text-[11px] italic text-ink-2">
+            {trip.budgetNote ? <span>{trip.budgetNote}</span> : "Presupuesto total"}
+          </p>
+          <div className="mt-2 flex flex-col gap-1">
+            {budgetRows.map(([category, amount]) => (
+              <div key={category} className="leader text-xs">
+                <span>{budgetLabels[category] ?? category}</span>
+                <span className="fill" aria-hidden="true"></span>
+                <span className="num font-bold">
+                  {trip.currency}
+                  {amount}
+                  {category === "accommodation" && nights > 0
+                    ? ` · ${nights} ${nights === 1 ? "noche" : "noches"}`
+                    : ""}
                 </span>
               </div>
             ))}
-            {summary.timeDistribution.length === 0 && (
-              <p className="text-xs text-gray-500 italic text-center">
-                Por definir
-              </p>
+          </div>
+        </StatRow>
+
+        {/* Destinations */}
+        <StatRow
+          icon={<MapPin size={14} className="text-accent" aria-hidden="true" />}
+          label={`Destinos · ${summary.cities.length} ${summary.cities.length === 1 ? "ciudad" : "ciudades"}`}
+        >
+          <div className="flex flex-wrap gap-1.5">
+            {summary.countries.map((country) => (
+              <span key={country} className="chip">
+                {getCountryFlag(country)} {country}
+              </span>
+            ))}
+            {summary.countries.length === 0 && (
+              <span className="text-xs italic text-ink-2">Por definir</span>
             )}
           </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <MapPin size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Ciudades a Visitar
-            </h3>
-          </div>
-          <div className="flex flex-wrap gap-1 mt-2">
+          <div className="mt-2 flex flex-wrap gap-1.5">
             {summary.cities.map((city) => (
               <span
                 key={city}
-                className="bg-gray-200 text-gray-700 px-2 py-1 rounded-lg text-xs font-medium"
+                className="rounded-md border border-black/10 bg-[#efe8d6] px-2 py-0.5 text-xs font-medium"
               >
                 {city}
               </span>
             ))}
             {summary.cities.length === 0 && (
-              <p className="text-xs text-gray-500 italic">Por definir</p>
+              <span className="text-xs italic text-ink-2">Por definir</span>
             )}
           </div>
-        </div>
+        </StatRow>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <Train size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Transporte Principal
-            </h3>
-          </div>
-          <div className="flex flex-col gap-1">
-            {summary.keyTransportation.map((transport, index) => (
+        {/* Time distribution */}
+        <StatRow
+          icon={<Clock size={14} className="text-accent" aria-hidden="true" />}
+          label="Distribución del tiempo"
+        >
+          {summary.timeDistribution.length === 0 ? (
+            <p className="text-xs italic text-ink-2">Por definir</p>
+          ) : (
+            <div className="flex flex-col gap-2">
               <div
-                key={index}
-                className="p-1 px-2 bg-gray-100 rounded-sm text-xs text-gray-700 border-l-2 border-blue-500"
+                className="flex h-3 w-full gap-px overflow-hidden rounded-full"
+                role="img"
+                aria-label="Distribución de días por país"
               >
-                <span>{transport}</span>
+                {summary.timeDistribution.map((entry, index) => (
+                  <span
+                    key={entry.label}
+                    className="h-full min-w-0"
+                    style={{
+                      flexGrow: Number(entry.percentage.replace("%", "")),
+                      background: "var(--color-accent)",
+                      opacity: index % 2 === 0 ? 0.55 : 1,
+                    }}
+                    title={`${entry.emoji} ${entry.label}: ${entry.days} días (${entry.percentage})`}
+                  />
+                ))}
               </div>
-            ))}
-            {summary.keyTransportation.length === 0 && (
-              <p className="text-xs text-gray-500 italic">Por definir</p>
-            )}
-          </div>
-        </div>
+              <div className="flex flex-col gap-1">
+                {summary.timeDistribution.map((entry) => (
+                  <div key={entry.label} className="leader text-xs">
+                    <span>
+                      {entry.emoji} {entry.label}
+                    </span>
+                    <span className="fill" aria-hidden="true"></span>
+                    <span className="font-bold num">{entry.percentage}</span>
+                    <span className="num font-medium text-ink-2">
+                      {entry.days} {entry.days === 1 ? "día" : "días"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </StatRow>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <DollarSign size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Desglose del Presupuesto
-            </h3>
-          </div>
-          <div className="flex flex-col gap-1">
-            {Object.entries(summary.budgetBreakdown).map(
-              ([category, amount]) => (
-                <div
-                  key={category}
-                  className="flex justify-between items-center p-1 px-2 bg-gray-100 rounded-sm text-xs"
+        {/* Key transportation */}
+        <StatRow
+          icon={<TrainFront size={14} className="text-accent" aria-hidden="true" />}
+          label="Transporte principal"
+        >
+          {summary.keyTransportation.length === 0 ? (
+            <p className="text-xs italic text-ink-2">Por definir</p>
+          ) : (
+            <ul className="flex flex-col gap-1.5">
+              {summary.keyTransportation.map((transport, index) => (
+                <li
+                  key={index}
+                  className="text-[13px] leading-snug text-ink"
                 >
-                  <span className="text-gray-700 font-medium">
-                    {budgetLabels[category] ?? category}
+                  <span className="mr-1.5 text-accent" aria-hidden="true">
+                    ▸
                   </span>
-                  <span className="text-green-600 font-semibold">
-                    {trip.currency}
-                    {amount}
-                    {category === "accommodation" && nights > 0
-                      ? ` (${nights} noches)`
-                      : ""}
-                  </span>
-                </div>
-              )
-            )}
-            {Object.keys(summary.budgetBreakdown).length === 0 && (
-              <p className="text-xs text-gray-500 italic text-center">
-                Por definir
-              </p>
-            )}
-          </div>
-        </div>
+                  {transport}
+                </li>
+              ))}
+            </ul>
+          )}
+        </StatRow>
 
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 rounded-lg p-3 transition-all duration-300 border border-gray-200 hover:-translate-y-0.5 hover:shadow-md hover:border-blue-400">
-          <div className="flex items-center gap-2 mb-2">
-            <Clock size={20} className="text-blue-500" />
-            <h3 className="text-sm font-semibold text-gray-800 m-0">
-              Consejos Clave
-            </h3>
-          </div>
-          <ul className="m-0 pl-3">
-            {trip.keyTips.map((tip, index) => (
-              <li
-                key={index}
-                className="mb-1 text-xs text-gray-700 leading-relaxed"
-              >
-                {tip}
-              </li>
-            ))}
-            {trip.keyTips.length === 0 && (
-              <li className="text-xs text-gray-500 italic">Por definir</li>
-            )}
-          </ul>
-        </div>
+        {/* Key tips */}
+        <StatRow
+          icon={<Sparkles size={14} className="text-accent" aria-hidden="true" />}
+          label="Consejos clave"
+        >
+          {trip.keyTips.length === 0 ? (
+            <p className="text-xs italic text-ink-2">Por definir</p>
+          ) : (
+            <ul className="flex flex-col gap-1.5">
+              {trip.keyTips.map((tip, index) => (
+                <li key={index} className="flex gap-2 text-[13px] leading-snug text-ink">
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                    aria-hidden="true"
+                  />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          )}
+        </StatRow>
       </div>
-    </div>
+
+      <footer className="border-t px-5 py-3 text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-2/70">
+        {trip.flag} {trip.currency} — tablón de partidas
+      </footer>
+    </section>
   );
 };
 
